@@ -1,6 +1,13 @@
 package org.example;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.sun.net.httpserver.HttpHandler;
+import org.apache.hc.client5.http.classic.methods.HttpGet;
+import org.apache.hc.client5.http.classic.methods.HttpPost;
+import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
+import org.apache.hc.client5.http.impl.classic.HttpClientBuilder;
+import org.apache.hc.core5.http.HttpEntity;
+import org.apache.hc.core5.http.io.HttpClientResponseHandler;
+import org.apache.hc.core5.http.io.entity.EntityUtils;
 
 import javax.net.ssl.HttpsURLConnection;
 import java.io.*;
@@ -8,226 +15,61 @@ import java.net.*;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.nio.charset.StandardCharsets;
 import java.util.*;
 
+
 public class Main {
-//    private static final String GET_URL = "https://jsonplaceholder.typicode.com/users";
-//    private static final String GET_URL = "https://my-json-server.typicode.com/typicode/demo/posts";
-    private static final String GET_URL = "https://static.xx.fbcdn.net/rsrc.php/v3i-MW4/yk/l/makehaste_jhash/rvp5xpafJN7.js?_nc_x=I-cKk9FkQ98";
-    private static final String POST_URL = "https://jsonplaceholder.typicode.com/users";
-    private static final String PUT_URL = "https://jsonplaceholder.typicode.com/users/10";
-    private static final String PATCH_URL = "https://jsonplaceholder.typicode.com/users/10";
-    private static final String DELETE_URL = "https://jsonplaceholder.typicode.com/users/9";
+    private static Scanner scanner = new Scanner(System.in);
+    private static String inputURL = scanner.nextLine().trim();
 
-    public static void main(String[] args) throws IOException, InterruptedException {
-        sendGET();
-        sendPOST();
-        sendPUT();
-        sendPATCH();
-        sendDELETE();
+    public static void main(String[] args) throws IOException, InterruptedException, URISyntaxException {
+        //https://jsonplaceholder.typicode.com/users
+
+//        String inputURL = "https://csp.withgoogle.com/csp/angular.io"; //405
+//        String inputURL = "https://ups.analytics.yahoo.com/ups/55973/sync?uid=9060fa68-6eb8-4d23-aaf7-5346f473f54e-tuct87a199b&_origin=1"; //204
+//        String inputURL = "https://hk-trc-events.taboola.com/vnzoom-publisher/log/3/supply-feature?route=HK:HK:V&tvi2=5906&tvi48=9598&tvi50=9058&lti=deflated&ri=5d7309d16a0173f97c081d6942e8ae97&sd=v2_94daa36068a920933a429558d7fe78c3_9060fa68-6eb8-4d23-aaf7-5346f473f54e-tuct87a199b_1705393385_1705393385_CAwQlshdGJnb94rRMSABKAMw6QE4uIEQQIOgEEjAjvMDUP___________wFYAGCJAWiI8MPY3I3a9PEBcAE&ui=9060fa68-6eb8-4d23-aaf7-5346f473f54e-tuct87a199b&pi=/threads/can-tim-cach-tai-course-tu-udemy.51162&wi=2679739317661352242&pt=text&vi=1705393384857&d=%7B%22event_type%22%3A%22EXPLORE_MORE%22%2C%22event_state%22%3A%22CLICKABLE%22%2C%22event_value%22%3A%22tblOriginalState%3A%20true%22%2C%22event_msg%22%3A%22back%20button%20enabled%2C%20history%20changed.%22%2C%22event_key%22%3A%22%22%7D&tim=15%3A23%3A15.782&id=7349&llvl=2&cv=20240115-4-RELEASE&"; //204
+//        String inputURL = "https://images.taboola.com/taboola/image/fetch/f_jpg%2Cq_auto%2Ch_178%2Cw_320%2Cc_fill%2Cg_faces:auto%2Ce_sharpen/https%3A//vn-z.vn/styles/vn-z-thumb.jpg"; //400
+//        String inputURL = "https://vn-z.vn/styles/vn-z-thumb.jpg"; //404
+//        String inputURL = "https://www.google.com/ads/ga-audiences?t=sr&aip=1&_r=4&slf_rd=1&v=1&_v=j101&tid=UA-5831155-1&cid=1114205879.1645675946&jid=1234981401&_u=YDFAAAIgAAAAgCgBI~&z=664516008"; //404
+//        String inputURL = "https://api.omappapi.com/v2/embed/4555?d=webfx.com"; //401
+//        String inputURL = "https://mwzeom.zeotap.com/mw?zpartnerid=1412&env=mWeb&cid=b53c7282da50e070e06de3c8e666773d1f581820352861b9fe7244f075bece6d&gdpr=$0&gdpr_consent=$"; //403
+//        String inputURL = "https://static.zdassets.com/web_widget/classic/latest/fda6cd35495c75f83508d9d2e77ee33d.mp3";
+//        String inputURL = "https://td.doubleclick.net/td/rul/796001856?random=1705393187848&cv=11&fst=1705393187848&fmt=3&bg=ffffff&guid=ON&async=1&gtm=45be41a0v877914216&gcd=11l1l1l1l1&dma=0&u_w=1536&u_h=864&url=https%3A%2F%2Fwww.geeksforgeeks.org%2Ftop-20-tips-and-tricks-of-android-studio%2F&hn=www.googleadservices.com&frm=0&tiba=Top%2020%20Tips%20and%20Tricks%20of%20Android%20Studio%20-%20GeeksforGeeks&auid=543589667.1703150198&fledge=1&uaa=x86&uab=64&uafvl=Not_A%2520Brand%3B8.0.0.0%7CChromium%3B120.0.6099.217%7CGoogle%2520Chrome%3B120.0.6099.217&uamb=0&uap=Windows&uapv=15.0.0&uaw=0&data=event%3Dgtag.config";
+
+//        httpRequest(inputURL,"GET");
+//        httpRequest(inputURL,"POST");
+//        httpRequest(inputURL,"PUT");
+        httpRequest(inputURL,"DELETE");
     }
 
-    private static void sendDELETE() throws IOException, InterruptedException {
-        System.out.println("DELETE REQUEST --->");
-        HttpRequest request = HttpRequest.newBuilder()
-                .DELETE()
-                .uri(URI.create(DELETE_URL))
-                .build();
+    private static void httpRequest(String inputURL, String inputMethod) {
+        Boolean sendReq = true;
+        while (sendReq){
+            try {
+                URL url = new URI(inputURL).toURL();
+                HttpsURLConnection httpsURLConnection = (HttpsURLConnection) url.openConnection();
+                httpsURLConnection.setRequestMethod(inputMethod);
+                httpsURLConnection.setInstanceFollowRedirects(true);
 
-        HttpResponse<String> response = HttpClient.newHttpClient()
-                .send(request, HttpResponse.BodyHandlers.ofString());
-
-        System.out.print("Request Code: ");
-        System.out.println(response.statusCode());
-        System.out.print("Request Method: ");
-        System.out.println(request.method());
-
-        //get all response header
-        Map<String, List<String>> map = response.headers().map();
-        System.out.println("-----Response Header-----");
-        for (Map.Entry<String, List<String>> entry : map.entrySet()) {
-            System.out.println("Key : " + entry.getKey()
-                    + " ,Value : " + entry.getValue());
+                System.out.println("--- Start Request ---");
+                System.out.println("Request Method : " + httpsURLConnection.getRequestMethod());
+                System.out.println("Response Code : " + httpsURLConnection.getResponseCode());
+                System.out.println("Response Message : " + httpsURLConnection.getResponseMessage());
+                System.out.println("Connect Time Out : " + httpsURLConnection.getConnectTimeout());
+                System.out.println("Error Stream : " + httpsURLConnection.getErrorStream());
+                System.out.println("--- End Request ---\n");
+                Thread.sleep(10000);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            } catch (URISyntaxException e) {
+                System.out.println("Input URL is URL ? " + e.toString());
+                break;
+            } catch (IllegalArgumentException e){
+                System.out.println("Input URL is URL ? " + e.toString());
+                break;
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
         }
-        System.out.println("-----Response Header-----\n");
-
-        //get all content response
-        System.out.println("-----Response Body-----");
-        System.out.println(response.body());
-        System.out.println("-----Response Body-----\n");
-        System.out.println("--- DELETE REQUEST <---");
     }
-    private static void sendPATCH() throws IOException, InterruptedException {
-        System.out.println("PATCH REQUEST --->");
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(PATCH_URL))
-                .header("Content-Type", "application/json")
-                .method("PATCH", HttpRequest.BodyPublishers.ofString("{\"name\": \"BMW X5 M Sport\"}"))
-                .build();
-
-        HttpResponse<String> response = HttpClient.newHttpClient()
-                .send(request, HttpResponse.BodyHandlers.ofString());
-
-        System.out.print("Request Code: ");
-        System.out.println(response.statusCode());
-        System.out.print("Request Method: ");
-        System.out.println(request.method());
-
-        //get all response header
-        Map<String, List<String>> map = response.headers().map();
-        System.out.println("-----Response Header-----");
-        for (Map.Entry<String, List<String>> entry : map.entrySet()) {
-            System.out.println("Key : " + entry.getKey()
-                    + " ,Value : " + entry.getValue());
-        }
-        System.out.println("-----Response Header-----\n");
-
-        //get all content response
-        System.out.println("-----Response Body-----");
-        System.out.println(response.body());
-        System.out.println("-----Response Body-----\n");
-        System.out.println("--- PATCH REQUEST <---");
-    }
-    private static void sendPUT() throws IOException, InterruptedException {
-        System.out.println("PUT REQUEST --->");
-        String requestBody = " {\n" +
-                "        \"id\": 10,\n" +
-                "        \"name\": \"Roronoa Zoro\",\n" +
-                "        \"username\": \"Bret\",\n" +
-                "        \"email\": \"Sincere@april.biz\",\n" +
-                "        \"address\": {\n" +
-                "            \"street\": \"Kulas Light\",\n" +
-                "            \"suite\": \"Apt. 556\",\n" +
-                "            \"city\": \"Gwenborough\",\n" +
-                "            \"zipcode\": \"92998-3874\",\n" +
-                "            \"geo\": {\n" +
-                "                \"lat\": \"-37.3159\",\n" +
-                "                \"lng\": \"81.1496\"\n" +
-                "            }\n" +
-                "        },\n" +
-                "        \"phone\": \"1-770-736-8031 x56442\",\n" +
-                "        \"website\": \"hildegard.org\",\n" +
-                "        \"company\": {\n" +
-                "            \"name\": \"Romaguera-Crona\",\n" +
-                "            \"catchPhrase\": \"Multi-layered client-server neural-net\",\n" +
-                "            \"bs\": \"harness real-time e-markets\"\n" +
-                "        }\n" +
-                "    }";
-        HttpRequest request = HttpRequest.newBuilder()
-                .PUT(HttpRequest.BodyPublishers.ofString(requestBody))
-                .uri(URI.create(PUT_URL))
-                .header("Content-Type", "application/json")
-                .build();
-
-        HttpResponse<String> response = HttpClient.newHttpClient()
-                .send(request, HttpResponse.BodyHandlers.ofString());
-
-        System.out.print("Request Code: ");
-        System.out.println(response.statusCode());
-        System.out.print("Request Method: ");
-        System.out.println(request.method());
-
-        //get all response header
-        Map<String, List<String>> map = response.headers().map();
-        System.out.println("-----Response Header-----");
-        for (Map.Entry<String, List<String>> entry : map.entrySet()) {
-            System.out.println("Key : " + entry.getKey()
-                    + " ,Value : " + entry.getValue());
-        }
-        System.out.println("-----Response Header-----\n");
-
-        //get all content response
-        System.out.println("-----Response Body-----");
-        System.out.println(response.body());
-        System.out.println("-----Response Body-----\n");
-        System.out.println("--- PUT REQUEST <---");
-    }
-
-    private static void sendGET() throws IOException, InterruptedException {
-        System.out.println("GET REQUEST --->");
-        HttpRequest request = HttpRequest.newBuilder()
-                .GET()
-                .uri(URI.create(GET_URL))
-                .build();
-
-        HttpResponse<String> response = HttpClient.newHttpClient()
-                .send(request, HttpResponse.BodyHandlers.ofString());
-
-        System.out.print("Request Code: ");
-        System.out.println(response.statusCode());
-        System.out.print("Request Method: ");
-        System.out.println(request.method());
-
-        //get all response header
-        Map<String, List<String>> map = response.headers().map();
-        System.out.println("-----Response Header-----");
-        for (Map.Entry<String, List<String>> entry : map.entrySet()) {
-            System.out.println("Key : " + entry.getKey()
-                    + " ,Value : " + entry.getValue());
-        }
-        System.out.println("-----Response Header-----\n");
-
-        //get all content response
-        System.out.println("-----Response Body-----");
-        System.out.println(response.body());
-        System.out.println("-----Response Body-----\n");
-        System.out.println("--- GET REQUEST <---\n");
-    }
-
-    private static void sendPOST() throws IOException, InterruptedException {
-        System.out.println("POST REQUEST --->");
-        String requestBody = " {\n" +
-                "        \"id\": 11,\n" +
-                "        \"name\": \"Krishna Rungta\",\n" +
-                "        \"username\": \"Bret\",\n" +
-                "        \"email\": \"Sincere@april.biz\",\n" +
-                "        \"address\": {\n" +
-                "            \"street\": \"Kulas Light\",\n" +
-                "            \"suite\": \"Apt. 556\",\n" +
-                "            \"city\": \"Gwenborough\",\n" +
-                "            \"zipcode\": \"92998-3874\",\n" +
-                "            \"geo\": {\n" +
-                "                \"lat\": \"-37.3159\",\n" +
-                "                \"lng\": \"81.1496\"\n" +
-                "            }\n" +
-                "        },\n" +
-                "        \"phone\": \"1-770-736-8031 x56442\",\n" +
-                "        \"website\": \"hildegard.org\",\n" +
-                "        \"company\": {\n" +
-                "            \"name\": \"Romaguera-Crona\",\n" +
-                "            \"catchPhrase\": \"Multi-layered client-server neural-net\",\n" +
-                "            \"bs\": \"harness real-time e-markets\"\n" +
-                "        }\n" +
-                "    }";
-        HttpRequest request = HttpRequest.newBuilder()
-                .POST(HttpRequest.BodyPublishers.ofString(requestBody))
-                .uri(URI.create(POST_URL))
-                .header("Content-Type", "application/json")
-                .build();
-
-        HttpResponse<String> response = HttpClient.newHttpClient()
-                .send(request, HttpResponse.BodyHandlers.ofString());
-
-        System.out.print("Request Code: ");
-        System.out.println(response.statusCode());
-        System.out.print("Request Method: ");
-        System.out.println(request.method());
-
-        //get all response header
-        Map<String, List<String>> map = response.headers().map();
-        System.out.println("-----Response Header-----");
-        for (Map.Entry<String, List<String>> entry : map.entrySet()) {
-            System.out.println("Key : " + entry.getKey()
-                    + " ,Value : " + entry.getValue());
-        }
-        System.out.println("-----Response Header-----\n");
-
-        //get all content response
-        System.out.println("-----Response Body-----");
-        System.out.println(response.body());
-        System.out.println("-----Response Body-----\n");
-        System.out.println("--- POST REQUEST <---");
-    }
-
 }
