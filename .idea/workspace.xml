@@ -139,7 +139,14 @@
       <option name="project" value="LOCAL" />
       <updated>1705457806975</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="commit : gửi request sau mỗi 10s trong vòng 1 phút.">
+      <created>1705562306181</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1705562306181</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -159,6 +166,7 @@
     <MESSAGE value="commit nhập url GET ? POST ?" />
     <MESSAGE value="commit với url = https://jsonplaceholder.typicode.com/users, có thể get lấy dữ liệu, post thêm dữ liệu, put , patch chỉnh sửa 1 phần tử, delete xóa 1 phần tử." />
     <MESSAGE value="commit : kiểm tra được các thuộc tính : status code, message, connect time out, error stream." />
-    <option name="LAST_COMMIT_MESSAGE" value="commit : kiểm tra được các thuộc tính : status code, message, connect time out, error stream." />
+    <MESSAGE value="commit : gửi request sau mỗi 10s trong vòng 1 phút." />
+    <option name="LAST_COMMIT_MESSAGE" value="commit : gửi request sau mỗi 10s trong vòng 1 phút." />
   </component>
 </project>

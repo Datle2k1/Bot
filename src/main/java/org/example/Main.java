@@ -31,6 +31,15 @@ public class Main {
         list.add(scheduler.scheduleAtFixedRate(new ThreadRequestHttp("PUT",inputURL,"PUT"), 1, 10, SECONDS));
         list.add(scheduler.scheduleAtFixedRate(new ThreadRequestHttp("DELETE",inputURL,"DELETE"), 1, 10, SECONDS));
         scheduler.schedule(new EndWorker(scheduler, list), 30, SECONDS);
+
+//        ScheduledFuture handle_1 = scheduler.scheduleAtFixedRate(new ThreadRequestHttp("GET",inputURL,"GET"), 1, 10, SECONDS);
+//        ScheduledFuture handle_2 = scheduler.scheduleAtFixedRate(new ThreadRequestHttp("POST",inputURL,"POST"), 1, 10, SECONDS);
+//        ScheduledFuture handle_3 = scheduler.scheduleAtFixedRate(new ThreadRequestHttp("PUT",inputURL,"PUT"), 1, 10, SECONDS);
+//        ScheduledFuture handle_4 = scheduler.scheduleAtFixedRate(new ThreadRequestHttp("DELETE",inputURL,"DELETE"), 1, 10, SECONDS);
+//        scheduler.schedule(new EndWorker(scheduler,handle_1), 30, SECONDS);
+//        scheduler.schedule(new EndWorker(scheduler,handle_2), 30, SECONDS);
+//        scheduler.schedule(new EndWorker(scheduler,handle_3), 30, SECONDS);
+//        scheduler.schedule(new EndWorker(scheduler,handle_4), 30, SECONDS);
     }
 }
 
@@ -86,6 +95,22 @@ class ThreadRequestHttp implements Runnable {
     }
 }
 
+//class EndWorker implements Runnable {
+//    private ScheduledExecutorService scheduler;
+//    private ScheduledFuture scheduledFuture;
+//
+//    public EndWorker(ScheduledExecutorService scheduler, ScheduledFuture scheduledFuture) {
+//        this.scheduler = scheduler;
+//        this.scheduledFuture = scheduledFuture;
+//    }
+//
+//    @Override
+//    public void run() {
+//        scheduledFuture.cancel(true);
+//        scheduler.shutdown();
+//    }
+//}
+
 class EndWorker implements Runnable {
     private List<ScheduledFuture> list;
     private ScheduledExecutorService scheduler;
@@ -103,3 +128,4 @@ class EndWorker implements Runnable {
         scheduler.shutdown();
     }
 }
+
