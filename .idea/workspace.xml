@@ -4,14 +4,22 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9e771420-aa80-4a07-9f8c-71d1aef6fd25" name="Changes" comment="">
+    <list default="true" id="9e771420-aa80-4a07-9f8c-71d1aef6fd25" name="Changes" comment="commit : gửi request sau mỗi 10s trong vòng 1 phút, thử không sử dụng List.">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/MyBot.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/SendTo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
   </component>
   <component name="CodeStyleSettingsInfer">
     <option name="done" value="true" />
@@ -48,11 +56,18 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.cidr.known.project.marker": "true",
+    "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
-    "last_opened_file_path": "E:/Android_Roadmap/WorkSpace/CVcorp/Java/Bot",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "E:/Android_Roadmap/WorkSpace/CVcorp/Java/manga-be-bot",
     "settings.editor.selected.configurable": "preferences.pluginManager"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="org.example" />
+    </key>
+  </component>
   <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.example.Main" />
@@ -146,7 +161,14 @@
       <option name="project" value="LOCAL" />
       <updated>1705562306181</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="commit : gửi request sau mỗi 10s trong vòng 1 phút, thử không sử dụng List.">
+      <created>1705564159514</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1705564159514</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -167,6 +189,7 @@
     <MESSAGE value="commit với url = https://jsonplaceholder.typicode.com/users, có thể get lấy dữ liệu, post thêm dữ liệu, put , patch chỉnh sửa 1 phần tử, delete xóa 1 phần tử." />
     <MESSAGE value="commit : kiểm tra được các thuộc tính : status code, message, connect time out, error stream." />
     <MESSAGE value="commit : gửi request sau mỗi 10s trong vòng 1 phút." />
-    <option name="LAST_COMMIT_MESSAGE" value="commit : gửi request sau mỗi 10s trong vòng 1 phút." />
+    <MESSAGE value="commit : gửi request sau mỗi 10s trong vòng 1 phút, thử không sử dụng List." />
+    <option name="LAST_COMMIT_MESSAGE" value="commit : gửi request sau mỗi 10s trong vòng 1 phút, thử không sử dụng List." />
   </component>
 </project>

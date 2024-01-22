@@ -1,131 +1,147 @@
 package org.example;
 
+import okhttp3.*;
+import okhttp3.internal.http.HttpMethod;
+import org.jetbrains.annotations.NotNull;
+import org.telegram.telegrambots.bots.TelegramLongPollingBot;
+import org.telegram.telegrambots.meta.TelegramBotsApi;
+import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
+import org.telegram.telegrambots.meta.api.objects.Update;
+import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
+
 import javax.net.ssl.HttpsURLConnection;
 import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.net.UnknownHostException;
+import java.net.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
 
+
 import static java.util.concurrent.TimeUnit.SECONDS;
 
 public class Main {
-    public static void main(String[] args) {
-        //https://jsonplaceholder.typicode.com/user
-        //https://docs.oracle.com/favicon.ico
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Input URL : ");
-        String inputURL = scanner.nextLine();
+    static String inputURL = "";
+    public static void main(String[] args) throws URISyntaxException, IOException {
+//        String inputURL = "https://www.baeldung.com/java-try-with-resources/";
+//        String inputURL = "https://jsonplaceholder.typicode.com/users";
+        String inputURL ="https://www.youtube.com/watch?v=WY_IiSepq2E";
+//        try {
+//            TelegramBotsApi botsApi = new TelegramBotsApi(DefaultBotSession.class);
+//            botsApi.registerBot(new MyBot());
+//        } catch (TelegramApiException e) {
+//            e.printStackTrace();
+//        }
+//        inputURL = Output(SendTo.txt);
+//        System.out.println(inputURL);
 
-        List<ScheduledFuture> list = new ArrayList<ScheduledFuture>();
+        List<ScheduledFuture> list = new ArrayList<>();
         ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(4);
-
-        list.add(scheduler.scheduleAtFixedRate(new ThreadRequestHttp("GET",inputURL,"GET"), 1, 10, SECONDS));
-        list.add(scheduler.scheduleAtFixedRate(new ThreadRequestHttp("POST",inputURL,"POST"), 1, 10, SECONDS));
-        list.add(scheduler.scheduleAtFixedRate(new ThreadRequestHttp("PUT",inputURL,"PUT"), 1, 10, SECONDS));
-        list.add(scheduler.scheduleAtFixedRate(new ThreadRequestHttp("DELETE",inputURL,"DELETE"), 1, 10, SECONDS));
-        scheduler.schedule(new EndWorker(scheduler, list), 30, SECONDS);
-
-//        ScheduledFuture handle_1 = scheduler.scheduleAtFixedRate(new ThreadRequestHttp("GET",inputURL,"GET"), 1, 10, SECONDS);
-//        ScheduledFuture handle_2 = scheduler.scheduleAtFixedRate(new ThreadRequestHttp("POST",inputURL,"POST"), 1, 10, SECONDS);
-//        ScheduledFuture handle_3 = scheduler.scheduleAtFixedRate(new ThreadRequestHttp("PUT",inputURL,"PUT"), 1, 10, SECONDS);
-//        ScheduledFuture handle_4 = scheduler.scheduleAtFixedRate(new ThreadRequestHttp("DELETE",inputURL,"DELETE"), 1, 10, SECONDS);
-//        scheduler.schedule(new EndWorker(scheduler,handle_1), 30, SECONDS);
-//        scheduler.schedule(new EndWorker(scheduler,handle_2), 30, SECONDS);
-//        scheduler.schedule(new EndWorker(scheduler,handle_3), 30, SECONDS);
-//        scheduler.schedule(new EndWorker(scheduler,handle_4), 30, SECONDS);
+        list.add(scheduler.scheduleAtFixedRate(new ThreadRequestHttp(inputURL,"GET"),1,20, SECONDS));
+        list.add(scheduler.scheduleAtFixedRate(new ThreadRequestHttp(inputURL,"POST"),1,20, SECONDS));
+        list.add(scheduler.scheduleAtFixedRate(new ThreadRequestHttp(inputURL,"PUT"),1,20, SECONDS));
+        list.add(scheduler.scheduleAtFixedRate(new ThreadRequestHttp(inputURL,"DELETE"),1,20, SECONDS));
+        list.add(scheduler.scheduleAtFixedRate(new ThreadRequestHttp(inputURL,"PATCH"),1,20, SECONDS));
+        list.add(scheduler.scheduleAtFixedRate(new ThreadRequestHttp(inputURL,"HEAD"),1,20, SECONDS));
     }
 }
 
 class ThreadRequestHttp implements Runnable {
-    private String name;
+    static OkHttpClient client = new OkHttpClient();
+    public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
     private String inputURL;
     private String inputMethod;
     static int count = 0,n = 0;
-    public ThreadRequestHttp(String name, String inputURL, String inputMethod) {
-        this.name = name;
+    public ThreadRequestHttp(String inputURL,String inputMethod) {
         this.inputURL = inputURL;
         this.inputMethod = inputMethod;
     }
 
     @Override
     public void run() {
-        httpRequest(inputURL,inputMethod);
+        try {
+            OkHttp(inputURL, inputMethod);
+        } catch (MalformedURLException e) {
+            throw new RuntimeException(e);
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
         count++;
     }
 
-    private static void timeRequest(int count){
+    private synchronized static void timeRequest(int count){
         if (count == 0){
             System.out.println("--- Send request --- Time : " + ++count);
         }
-        if (count != 0 && count%4 == 0){
-            System.out.println("--- Send request --- Time : " + (count - ((count/2) + n)));
+        if (count != 0 && count%6 == 0){
+            System.out.println("--- Send request --- Time : " + (count - ((count/2) + (2*n+1))));
             n++;
         }
     }
 
-    private synchronized static void  httpRequest(String inputURL, String method) {
-        try {
-            URL url = new URI(inputURL).toURL();
-            HttpsURLConnection httpsURLConnection = (HttpsURLConnection) url.openConnection();
-            httpsURLConnection.setRequestMethod(method);
-            timeRequest(count);
+    //
+    public synchronized static void OkHttp(String inputURL,String method) throws URISyntaxException, MalformedURLException {
+        URL url = new URI(inputURL).toURL();
+        String json = null;
+        RequestBody body = null;
+        switch (method){
+            case "PUT" : json = "{\n" +
+                    "    \"id\": 10,\n" +
+                    "    \"name\": \"Roronoa Zoro\",\n" +
+                    "    \"username\": \"Moriah.Stanton\",\n" +
+                    "    \"email\": \"Rey.Padberg@karina.biz\",\n" +
+                    "    \"address\": {\n" +
+                    "      \"street\": \"Kattie Turnpike\",\n" +
+                    "      \"suite\": \"Suite 198\",\n" +
+                    "      \"city\": \"Lebsackbury\",\n" +
+                    "      \"zipcode\": \"31428-2261\",\n" +
+                    "      \"geo\": {\n" +
+                    "        \"lat\": \"-38.2386\",\n" +
+                    "        \"lng\": \"57.2232\"\n" +
+                    "      }\n" +
+                    "    },\n" +
+                    "    \"phone\": \"024-648-3804\",\n" +
+                    "    \"website\": \"ambrose.net\",\n" +
+                    "    \"company\": {\n" +
+                    "      \"name\": \"Hoeger LLC\",\n" +
+                    "      \"catchPhrase\": \"Centralized empowering task-force\",\n" +
+                    "      \"bs\": \"target end-to-end models\"\n" +
+                    "    }\n" +
+                    "  }" ;
+                body = RequestBody.create(json, JSON);
+                break;
+            case "PATCH" : json = "{ \"name\": \"Roronoa Zororerr\"}" ;
+                body = RequestBody.create(json, JSON);
+                break;
+            case "POST" : json = "{ \"name\": \"Roronoa Zororerr - v2\"}" ;
+                body = RequestBody.create(json, JSON);
+                break;
+            case "HEAD" : json = null; body = null; break;
+            case "GET" : json = null; body = null; break;
+            case "DELETE" : json = null; body = null; break;
+        }
+        Request request = new Request.Builder()
+                .url(url)
+                .method(method,body)
+                .build();
+
+        timeRequest(count);
+        try (Response response = client.newCall(request).execute()) {
             System.out.println("--- Start Request ---");
-            System.out.println("Request Method : " + httpsURLConnection.getRequestMethod());
-            System.out.println("Response Code : " + httpsURLConnection.getResponseCode());
-            System.out.println("Response Message : " + httpsURLConnection.getResponseMessage());
-            System.out.println("Connect Time Out : " + httpsURLConnection.getConnectTimeout());
-            System.out.println("Error Stream : " + httpsURLConnection.getErrorStream());
+            System.out.println("Request Method : " + request.method());
+            System.out.println("Response Code : " + response.code());
+            System.out.println("Response is Successful : " + response.isSuccessful());
             System.out.println("--- End Request ---\n");
-        } catch (UnknownHostException e){
-            System.out.println(e + " : !!! Not determined IP address of a host");
+
+//            stringBuilder.append("Request Method : " + request.method());
+//            stringBuilder.append("Response Code : " + response.code());
+//            stringBuilder.append("Response is Successful : " + response.isSuccessful());
+//            stringBuilder.append("--- End Request ---\n");
         } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (URISyntaxException e) {
-            System.out.println(e + " : !!! This may not be a url");
-        } catch (IllegalArgumentException e){
-            System.out.println(e + " : !!! This may not be a url");
+            System.out.println(e);
         }
     }
+
 }
-
-//class EndWorker implements Runnable {
-//    private ScheduledExecutorService scheduler;
-//    private ScheduledFuture scheduledFuture;
-//
-//    public EndWorker(ScheduledExecutorService scheduler, ScheduledFuture scheduledFuture) {
-//        this.scheduler = scheduler;
-//        this.scheduledFuture = scheduledFuture;
-//    }
-//
-//    @Override
-//    public void run() {
-//        scheduledFuture.cancel(true);
-//        scheduler.shutdown();
-//    }
-//}
-
-class EndWorker implements Runnable {
-    private List<ScheduledFuture> list;
-    private ScheduledExecutorService scheduler;
-
-    public EndWorker(ScheduledExecutorService scheduler, List<ScheduledFuture> list) {
-        this.scheduler = scheduler;
-        this.list = list;
-    }
-
-    @Override
-    public void run() {
-        for (int i = 0; i < list.size() ; i++) {
-            list.get(i).cancel(true);
-        }
-        scheduler.shutdown();
-    }
-}
-
