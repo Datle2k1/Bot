@@ -5,13 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9e771420-aa80-4a07-9f8c-71d1aef6fd25" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/request/RequestOKHttp.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/scheduler/ScheduleRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/util/CheckMethod.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/util/CheckURL.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/read/ReadHTML.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/control/ThreadRequestHttp.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/request/RequestOKHttp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/request/RequestOKHttp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/run/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/run/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/scheduler/ScheduleRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/scheduler/ScheduleRequest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,7 +77,7 @@
       <module name="Bot.main" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="run.*" />
+          <option name="PATTERN" value="read.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -107,9 +106,31 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
+    <configuration name="Bot [test]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="test" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Gradle.Bot [dependencies]" />
+        <item itemvalue="Gradle.Bot [test]" />
         <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
@@ -193,7 +214,14 @@
       <option name="project" value="LOCAL" />
       <updated>1705980610841</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="commit : chia ra các package + sử dụng Callback">
+      <created>1706085211631</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1706085211631</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -218,6 +246,7 @@
     <MESSAGE value="commit : sử dụng OKHttp" />
     <MESSAGE value="commit : sử dụng swich case check method request" />
     <MESSAGE value="commit : chia ra các package" />
-    <option name="LAST_COMMIT_MESSAGE" value="commit : chia ra các package" />
+    <MESSAGE value="commit : chia ra các package + sử dụng Callback" />
+    <option name="LAST_COMMIT_MESSAGE" value="commit : chia ra các package + sử dụng Callback" />
   </component>
 </project>

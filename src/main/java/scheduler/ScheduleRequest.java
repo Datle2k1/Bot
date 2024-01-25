@@ -1,6 +1,7 @@
 package scheduler;
 
 import request.RequestOKHttp;
+import read.ReadHTML;
 
 import java.net.URL;
 import java.util.concurrent.Executors;
@@ -25,7 +26,6 @@ public class ScheduleRequest {
                 threadRequest.OkHttp(new RequestOKHttp.Callback() {
                     @Override
                     public URL getUrl() {
-                        System.out.println("input url : " + url);
                         return url;
                     }
                     @Override

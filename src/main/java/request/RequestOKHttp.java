@@ -1,6 +1,7 @@
 package request;
 
 import okhttp3.*;
+import read.ReadHTML;
 
 import java.io.IOException;
 import java.net.URL;
@@ -10,10 +11,6 @@ public class RequestOKHttp {
     public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
     private static StringBuilder stringBuilder = new StringBuilder();
     static int count = 1;
-
-    private static void timeRequest(int count){
-        System.out.println("--- Send request --- Time : " + count);
-    }
 
     public synchronized static void OkHttp(Callback callback) {
             URL url = callback.getUrl();
@@ -62,14 +59,15 @@ public class RequestOKHttp {
                     .method(method, body)
                     .build();
 
-            timeRequest(count);
+            System.out.println("\n--- Send request --- Time : " + count);
             try (Response response = client.newCall(request).execute()) {
                 stringBuilder.append("--- Start Request ---" + "\n");
+                stringBuilder.append("Http Protocol : " + response.protocol() + "\n");
                 stringBuilder.append("Request Method : " + request.method() + "\n");
                 stringBuilder.append("Request Message : " + response.message() + "\n");
                 stringBuilder.append("Response Code : " + response.code() + "\n");
                 stringBuilder.append("Response is Successful : " + response.isSuccessful() + "\n");
-                stringBuilder.append("Network Response : " + response.networkResponse() + "\n");
+                stringBuilder.append("Web Response : " + ReadHTML.readHTML(url) + "\n");
                 stringBuilder.append("--- End Request ---\n");
                 callback.execute(stringBuilder);
                 stringBuilder.setLength(0);
