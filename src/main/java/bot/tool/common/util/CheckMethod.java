@@ -1,11 +1,14 @@
-package util;
+package bot.tool.common.util;
+
+import bot.tool.bin.Main;
 
 public class CheckMethod {
-    private static String[] Method = {"GET","POST","PUT","DELETE","PATCH","HEAD"};
+    Main main = new Main();
+    private static String[] Method = {"GET","POST"};
     public static String checkMethod(String method){
         int i =0;
         boolean ck = false;
-        while (i<=5){
+        while (i<=1){
             if (!Method[i].equals(method)){
                 i++;
             } else {
@@ -13,7 +16,9 @@ public class CheckMethod {
                 break;
             }
         }
-        if (ck == false){System.out.println("!!! Error Method");}
+        if (ck == false){
+            System.out.println("!!! Error Method");
+        }
         return method;
     }
 }

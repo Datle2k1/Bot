@@ -5,12 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9e771420-aa80-4a07-9f8c-71d1aef6fd25" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/read/ReadHTML.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/bot/tool/common/model/ResponseResult.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/bot/tool/common/util/RequestOKHttp.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/bot/tool/task/SendRequest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/request/RequestOKHttp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/request/RequestOKHttp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/run/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/run/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/scheduler/ScheduleRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/scheduler/ScheduleRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/read/ReadHTML.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/request/RequestOKHttp.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/run/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bot/tool/bin/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/scheduler/ScheduleRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bot/tool/manager/ScheduleThread.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/util/CheckMethod.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bot/tool/common/util/CheckMethod.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/util/CheckURL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bot/tool/common/util/CheckURL.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,6 +35,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="package-info" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -59,7 +65,10 @@
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
     "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "E:/Android_Roadmap/WorkSpace/CVcorp/Java/Bot/src/main/java",
+    "last_opened_file_path": "E:/Android_Roadmap/WorkSpace/CVcorp/Java/Bot",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
     "settings.editor.selected.configurable": "preferences.pluginManager"
   }
 }]]></component>
@@ -73,7 +82,7 @@
   </component>
   <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="run.Main" />
+      <option name="MAIN_CLASS_NAME" value="bot.tool.bin.Main" />
       <module name="Bot.main" />
       <extension name="coverage">
         <pattern>
@@ -221,7 +230,14 @@
       <option name="project" value="LOCAL" />
       <updated>1706085211631</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="commit : sử dụng Jsoup đọc file html">
+      <created>1706153052074</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1706153052074</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -247,6 +263,7 @@
     <MESSAGE value="commit : sử dụng swich case check method request" />
     <MESSAGE value="commit : chia ra các package" />
     <MESSAGE value="commit : chia ra các package + sử dụng Callback" />
-    <option name="LAST_COMMIT_MESSAGE" value="commit : chia ra các package + sử dụng Callback" />
+    <MESSAGE value="commit : sử dụng Jsoup đọc file html" />
+    <option name="LAST_COMMIT_MESSAGE" value="commit : sử dụng Jsoup đọc file html" />
   </component>
 </project>

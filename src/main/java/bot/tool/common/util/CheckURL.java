@@ -1,4 +1,4 @@
-package util;
+package bot.tool.common.util;
 
 import java.net.MalformedURLException;
 import java.net.URI;

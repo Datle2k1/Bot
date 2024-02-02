@@ -1,19 +1,18 @@
-package run;
+package bot.tool.bin;
 
-import org.jsoup.Connection;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import scheduler.ScheduleRequest;
-import util.CheckMethod;
-import util.CheckURL;
+import bot.tool.common.model.ResponseResult;
+import bot.tool.manager.ScheduleThread;
+import bot.tool.common.util.CheckMethod;
+import bot.tool.common.util.CheckURL;
+import bot.tool.task.SendRequest;
 
-import java.io.IOException;
 import java.net.URL;
+import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Main {
-    //https://msh-jfrog.sohatv.vn/ui/native/vcc-viva-ads-gradle-release-local/com/google/auto/auto-common/0.10/auto-common-0.10.pom
-    private static ScheduleRequest schedule;
+    private static ScheduleThread scheduleThread;
     private static URL url;
     public static void main(String[] args){
         Scanner scanner = new Scanner(System.in);
@@ -26,8 +25,8 @@ public class Main {
         String inputMethod = scanner.nextLine();
         String method = CheckMethod.checkMethod(inputMethod);
         //Xếp lịch cho request
-        schedule = new ScheduleRequest(url,method);
-        schedule.scheduleThread();
+        scheduleThread = new ScheduleThread(new SendRequest(url,method));
+        scheduleThread.scheduleThread();
     }
 }
 
