@@ -1,21 +1,14 @@
-package bot.tool.common.model;
-
-import bot.tool.bin.Main;
-import bot.tool.common.util.RequestOKHttp;
-import bot.tool.task.SendRequest;
+package common.model;
 
 import java.net.URL;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
-public class ResponseResult{
+public class Response {
     URL url;
     int code;
     String method;
     String message;
 
-    public ResponseResult(URL url, int code, String method, String message) {
+    public Response(URL url, int code, String method, String message) {
         this.url = url;
         this.code = code;
         this.method = method;
