@@ -4,24 +4,18 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9e771420-aa80-4a07-9f8c-71d1aef6fd25" name="Changes" comment="commit : chia ra các package + sử dụng Callback">
-      <change afterPath="$PROJECT_DIR$/src/main/java/common/base/BaseWorker.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/common/model/Request.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/common/util/Const.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/task/api/request/RequestBody.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/task/api/request/RequestCallback.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/task/api/request/RequestCore.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/task/api/request/RequestMethod.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/task/api/request/RequestParameter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="9e771420-aa80-4a07-9f8c-71d1aef6fd25" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/bot/BotStatus.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/bot/MyBot.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/bot/tool/bin/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bin/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/bot/tool/common/model/ResponseResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/common/model/Response.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/bot/tool/common/util/CheckMethod.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/bot/tool/common/util/CheckURL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/common/util/Utility.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/bot/tool/common/util/RequestOKHttp.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/bot/tool/manager/ScheduleThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/manager/Manager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/bot/tool/task/SendRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/task/SendRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/bin/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bin/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/common/base/BaseWorker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/common/base/BaseWorker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/common/model/Response.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/common/model/Response.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/common/util/Utility.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/common/util/Utility.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/manager/Manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/manager/Manager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/task/SendRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/task/SendRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/task/api/request/RequestCallback.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/task/api/request/RequestCallback.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/task/api/request/RequestCore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/task/api/request/RequestCore.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,22 +33,13 @@
       <ProjectState />
     </projectState>
   </component>
-  <component name="ExternalProjectsManager">
-    <system id="GRADLE">
-      <state>
-        <task path="$PROJECT_DIR$">
-          <activation />
-        </task>
-        <projects_view />
-      </state>
-    </system>
-  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="package-info" />
         <option value="Interface" />
         <option value="Class" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
@@ -67,62 +52,56 @@
   <component name="ProjectCodeStyleSettingsMigration">
     <option name="version" value="2" />
   </component>
-  <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 6
-}</component>
   <component name="ProjectId" id="2aq6EnQXuGGENSJKUrXHDM3TRhC" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Gradle.Bot [:Main.main()].executor": "Debug",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.cidr.known.project.marker": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "cf.first.check.clang-format": "false",
-    "cidr.known.project.marker": "true",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "E:/ProjectAndroid/GitHub/Bot/src/main/java/common/model",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/Android_Roadmap/WorkSpace/CVcorp/Java/Bot&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\ProjectAndroid\GitHub\Bot\src\main\java\common\model" />
-      <recent name="E:\ProjectAndroid\GitHub\Bot\src\main\java\task\api" />
-      <recent name="E:\ProjectAndroid\GitHub\Bot\src\main\java\common\base" />
       <recent name="E:\Android_Roadmap\WorkSpace\CVcorp\Java\Bot\src\main\java" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="common.util" />
-      <recent name="task" />
-      <recent name="manager.request" />
-      <recent name="common.model" />
       <recent name="org.example" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="Application.bin.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="bin.Main" />
+      <option name="MAIN_CLASS_NAME" value="bot.tool.bin.Main" />
       <module name="Bot.main" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="read.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="bin.Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="bin.Main" />
+      <module name="Bot.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="bin.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -149,7 +128,6 @@
       <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>false</RunAsTest>
       <method v="2" />
     </configuration>
     <configuration name="Bot [test]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
@@ -171,23 +149,16 @@
       <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>false</RunAsTest>
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.bin.Main" />
+        <item itemvalue="Application.Main" />
         <item itemvalue="Gradle.Bot [dependencies]" />
         <item itemvalue="Gradle.Bot [test]" />
-        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
-  </component>
-  <component name="SharedIndexes">
-    <attachedChunks>
-      <set>
-        <option value="jdk-11.0.22-corretto-11.0.22-f644763e9732-4a89cc43" />
-      </set>
-    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -197,9 +168,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1705033653753</updated>
-      <workItem from="1708050839563" duration="17000" />
-      <workItem from="1708050867018" duration="9357000" />
-      <workItem from="1708067250229" duration="1786000" />
     </task>
     <task id="LOCAL-00001" summary="commit file .gitignore">
       <created>1705033743197</created>
@@ -288,9 +256,6 @@
     <option name="localTasksCounter" value="13" />
     <servers />
   </component>
-  <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="3" />
-  </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
@@ -320,21 +285,10 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/task/api/request/RequestCore.java</url>
-          <line>37</line>
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/task/SendRequest.java</url>
-          <line>20</line>
-          <option name="timeStamp" value="15" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/task/api/request/RequestCore.java</url>
-          <line>85</line>
-          <option name="timeStamp" value="17" />
-        </line-breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.NullPointerException" package="java.lang" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>

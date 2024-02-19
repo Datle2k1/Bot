@@ -28,27 +28,26 @@ public class SendRequest extends BaseWorker {
                     requestParameter.get(request.url);
                     break;
                 case POST:
+                    requestParameter.post(request.requestBody, request.url);
+                    break;
                 case PUT:
                 case DELETE:
                 case PATCH:
-                    requestParameter.post(request.requestBody, request.url);
-                    break;
+//                    requestParameter.post(request.requestBody, request.url);
+//                    break;
                 default:
                     return;
             }
 
             requestCore.request(requestParameter, new RequestCallback() {
                 @Override
-                public void success(String data) {
-                    //TODO xu ly gi thi tuy
+                public void success(StringBuilder data) {
                     callback.success(data);
                 }
 
                 @Override
                 public void fail(String msg) {
-                    //TODO xu ly gi thi tuy
                     callback.fail(msg);
-
                 }
             });
         } catch (Exception e) {
@@ -57,8 +56,7 @@ public class SendRequest extends BaseWorker {
     }
 
     public interface Callback {
-        void success(String data);
-
+        void success(StringBuilder data);
         void fail(String msg);
     }
 }

@@ -22,6 +22,7 @@ public class RequestCore {
      * Area : Variable
      ********************************************************************** */
     private final OkHttpClient client;
+    private final StringBuilder responseResult = new StringBuilder();
 
     /* **********************************************************************
      * Area : Constructor
@@ -58,6 +59,14 @@ public class RequestCore {
                     builder.url(url);
                     break;
                 case POST:
+                    builder.url(parameter.url);
+                    if (parameter.parameters != null) {
+                        body = buildPostBodyForm(parameter.parameters);
+                    }
+                    if (parameter.json != null) {
+                        body = buildPostBodyJson(parameter.json);
+                    }
+                    body = buildPostBodyJson(parameter.json);
                 case PUT:
                 case DELETE:
                 case PATCH:
@@ -82,13 +91,22 @@ public class RequestCore {
                 callback.prepare();
                 Request request = builder.build();
                 Response response = client.newCall(request).execute();
-//                ResponseBody responseBody = response.body();
-                //TODO tam thoi in ra moi code
-//                String result = null;
-//                if (responseBody != null) {
-//                    result = responseBody.string();
+                responseResult.append("--- Start Request ---" + "\n");
+                responseResult.append("URL Request : " + parameter.url + "\n");
+                responseResult.append("Time Request : " + (common.model.Response.list.size() + 1) + "\n");
+//                responseResult.append("Response Headers : " + response.headers());
+                responseResult.append("Request Method : " + request.method() + "\n");
+                responseResult.append("Response Code : " + response.code() + "\n");
+//                if (response.body() != null) {
+//                    responseResult.append("Response Body : " + response.body().string() + "\n");
 //                }
-                callback.success(response.code() + "");
+                if (!response.message().isEmpty()){
+                    responseResult.append("Response Message : " + response.message() + "\n");
+                }
+                responseResult.append("--- End Request ---" + "\n");
+                common.model.Response.list.add(new common.model.Response(parameter.url, response.code(), response.message(), response.message()));
+                callback.success(responseResult);
+                responseResult.setLength(0);
             }
         } catch (Exception e) {
             e.printStackTrace();

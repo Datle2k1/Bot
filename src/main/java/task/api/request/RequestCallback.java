@@ -8,8 +8,7 @@ public abstract class RequestCallback {
     /**
      * Function call before make request
      */
-    public void prepare() {
-    }
+    public void prepare() {}
 
     /* **********************************************************************
      * Area : Function - Abstract
@@ -20,7 +19,7 @@ public abstract class RequestCallback {
      *
      * @param data response
      */
-    public abstract void success(String data);
+    public abstract void success(StringBuilder data);
 
     /**
      * Function call when something wrong though request session

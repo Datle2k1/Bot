@@ -6,18 +6,20 @@ import java.net.URISyntaxException;
 import java.net.URL;
 
 public class Utility {
-    public static URL checkURL(String inputURL){
-        URL url = null;
+    public static Boolean checkURL(String inputURL){
         try {
-            url = new URI(inputURL).toURL();
+            new URI(inputURL).toURL();
         } catch (MalformedURLException e) {
-            System.out.println(e + "!!! The URL is not in the correct format.");;
+            System.out.println(e + "!!! The URL is not in the correct format.");
+            return false;
         } catch (URISyntaxException e) {
             System.out.println(e + "!!! Input URL could not be parsed as a URI reference.");
+            return false;
         } catch (IllegalArgumentException e){
             System.out.println(e + "!!! Error URL input");
+            return false;
         }
-        return url;
+        return true;
     }
 
     public static boolean isUrlValidFormat(String url) {

@@ -5,7 +5,7 @@ import task.api.request.RequestCore;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public abstract class BaseWorker implements Runnable {
+public abstract class BaseWorker implements Runnable{
     public String name;
     protected String currentDir;
     protected boolean isRunning;
