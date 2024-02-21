@@ -1,54 +1,70 @@
 package manager;
 
-import bot.MyBot;
+import task.MyBot;
 import common.model.Request;
 import common.model.Response;
-import org.telegram.telegrambots.bots.TelegramLongPollingBot;
-import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
-import org.telegram.telegrambots.meta.api.objects.Update;
-import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
-import org.telegram.telegrambots.meta.generics.TelegramBot;
+import common.model.WebsiteLink;
+import common.util.JsonFileReader;
+import common.util.ThreadStatus;
+import common.util.Utility;
 import task.SendRequest;
+import task.api.request.RequestMethod;
 
 import java.util.concurrent.*;
 
 public class Manager {
-    private static ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(2);
-    private static ScheduledFuture<?> handle;
+    private static ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
     private static MyBot bot = new MyBot("6640509759:AAHj0Rmrq6lhczZNQiXfOypvsaWiqRfBVfA");
+    public static ThreadStatus status;
     private final int period;
-
     public Manager(int period) {
         this.period = period;
     }
 
-    public void run(Request request,Update update) {
-        handle = scheduler.scheduleAtFixedRate(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    System.out.println("Scheduler");
-                    new SendRequest("TEST", request, new SendRequest.Callback() {
-                        @Override
-                        public void success(StringBuilder data) {
-                            bot.sendMessage(update, String.valueOf(data));
+    public void run() {
+        scheduler.scheduleAtFixedRate(() -> {
+            status = ThreadStatus.Running;
+            try {
+                System.out.println("--- Scheduler ---");
+                //Lấy thông tin Website từ file Json
+                for (WebsiteLink w: JsonFileReader.readFIle()){
+                    if(Utility.isUrlValidFormat(w.getUrl())){
+                        //Tạo Request
+                        Request request = new Request(RequestMethod.POST,w.getUrl());
+                        new SendRequest("TEST", request, new SendRequest.Callback() {
+                            @Override
+                            public void success(StringBuilder data) {
+                                int index = Response.list.size();
+                                int code = Response.list.get(index - 1).getCode();
+                                StringBuilder add = new StringBuilder(w.getName());
+                                add.append(data);
+                                //Kiểm tra Response Code
+                                if (code / 100 == 4 ||code / 100 == 5){
+                                    System.out.println("\n");
+                                    bot.sendMessage(String.valueOf(data));
+                                } else{
+                                    System.out.println(data);
+                                }
+                            }
+                            @Override
+                            public void fail(String msg) {
+                                bot.sendMessage(msg);
+                                status = ThreadStatus.Complete;
+                            }
+                        });
+                    } else {
+                        bot.sendMessage("Website : " + w.getName() + "Error URL : " + w.getUrl());
+                    }
+                    while (true){
+                        if (status == ThreadStatus.Running || SendRequest.status == ThreadStatus.Running){
+                            java.lang.Thread.sleep(1000);
                         }
-                        @Override
-                        public void fail(String msg) {
-                            System.out.println(msg);
-                        }
-                    });
-                } catch (Exception e) {
-                    System.out.println(e.getMessage());
+                        break;
+                    }
                 }
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
             }
-        },0, period, TimeUnit.SECONDS);
-    }
-
-    public static void cancel(){
-        handle.cancel(true);
-//        scheduler.shutdown();
-        //Xóa danh sách các Response với URL trước.
-        Response.list.clear();
+        }, 0, period, TimeUnit.SECONDS);
     }
 }

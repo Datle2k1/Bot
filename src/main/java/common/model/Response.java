@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Response {
-    String url;
-    int code;
-    String method;
-    String message;
+    private String url;
+    private int code;
+    private String method;
+    private String message;
     public static List<Response> list = new ArrayList<>();
 
     public Response(String url, int code, String method, String message) {
@@ -15,14 +15,6 @@ public class Response {
         this.code = code;
         this.method = method;
         this.message = message;
-    }
-
-    public List<Response> getList() {
-        return list;
-    }
-
-    public void setList(List<Response> list) {
-        this.list = list;
     }
 
     public String getUrl() {

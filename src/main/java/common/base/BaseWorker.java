@@ -5,7 +5,7 @@ import task.api.request.RequestCore;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public abstract class BaseWorker implements Runnable{
+public abstract class BaseWorker implements Runnable {
     public String name;
     protected String currentDir;
     protected boolean isRunning;
@@ -20,6 +20,7 @@ public abstract class BaseWorker implements Runnable{
         initThreadPool(0);
     }
 
+    //Tạo ThreadPool chứa các Thread mới khi các Thread ban đầu vẫn đang hoạt động
     public void initThreadPool(int number) {
         if (number <= 0) {
             number = 1;

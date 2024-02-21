@@ -10,7 +10,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
-public class RequestCore {
+public class RequestCore  {
     /* **********************************************************************
      * Area : Variable - Const
      ********************************************************************** */
@@ -35,7 +35,7 @@ public class RequestCore {
      * Area : Function - Public
      ********************************************************************** */
     public void request(RequestParameter parameter, RequestCallback callback) {
-        System.out.println("request");
+        System.out.println("--- Get Response ---");
         if (callback == null) {
             return;
         } else if (parameter == null) {
@@ -60,12 +60,12 @@ public class RequestCore {
                     break;
                 case POST:
                     builder.url(parameter.url);
-                    if (parameter.parameters != null) {
-                        body = buildPostBodyForm(parameter.parameters);
-                    }
-                    if (parameter.json != null) {
-                        body = buildPostBodyJson(parameter.json);
-                    }
+//                    if (parameter.parameters != null) {
+//                        body = buildPostBodyForm(parameter.parameters);
+//                    }
+//                    if (parameter.json != null) {
+//                        body = buildPostBodyJson(parameter.json);
+//                    }
                     body = buildPostBodyJson(parameter.json);
                 case PUT:
                 case DELETE:
@@ -91,19 +91,16 @@ public class RequestCore {
                 callback.prepare();
                 Request request = builder.build();
                 Response response = client.newCall(request).execute();
-                responseResult.append("--- Start Request ---" + "\n");
+                responseResult.append("--- Result Response ---" + "\n");
                 responseResult.append("URL Request : " + parameter.url + "\n");
                 responseResult.append("Time Request : " + (common.model.Response.list.size() + 1) + "\n");
-//                responseResult.append("Response Headers : " + response.headers());
                 responseResult.append("Request Method : " + request.method() + "\n");
                 responseResult.append("Response Code : " + response.code() + "\n");
-//                if (response.body() != null) {
-//                    responseResult.append("Response Body : " + response.body().string() + "\n");
-//                }
                 if (!response.message().isEmpty()){
                     responseResult.append("Response Message : " + response.message() + "\n");
                 }
-                responseResult.append("--- End Request ---" + "\n");
+                responseResult.append("--- End Response ---" + "\n");
+                //Thêm kết quả Request vào danh sách kết quả.
                 common.model.Response.list.add(new common.model.Response(parameter.url, response.code(), response.message(), response.message()));
                 callback.success(responseResult);
                 responseResult.setLength(0);
@@ -117,6 +114,7 @@ public class RequestCore {
     /* **********************************************************************
      * Area : Function - Private - Build Request
      ********************************************************************** */
+    //Thêm tham số vào url.
     private String buildGetUrl(String url, Map<String, String> parameters) throws UnsupportedEncodingException {
         StringBuilder urlBuilder = new StringBuilder(url);
         if (parameters != null) {
@@ -200,7 +198,8 @@ public class RequestCore {
      * Area : Function - Private - Initialize
      ********************************************************************** */
     private OkHttpClient buildRequestClient(int timeout) {
-        System.out.println("OkHttpClient");
+        System.out.println("--- Create OkHttpClient ---");
+        //Tạo một phiên bản của OkHttpClient.Builder và định cấu hình.
         OkHttpClient.Builder builder;
         try {
             builder = new OkHttpClient.Builder().connectTimeout(timeout, TimeUnit.SECONDS).readTimeout(timeout, TimeUnit.SECONDS).writeTimeout(timeout, TimeUnit.SECONDS);
@@ -212,5 +211,5 @@ public class RequestCore {
 
     /* **********************************************************************
      * Area : Function - Private
-     ********************************************************************** */
+     ********************************************************************* */
 }

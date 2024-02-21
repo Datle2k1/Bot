@@ -2,12 +2,14 @@ package task;
 
 import common.base.BaseWorker;
 import common.model.Request;
+import common.util.ThreadStatus;
+import manager.Manager;
 import task.api.request.RequestCallback;
 import task.api.request.RequestParameter;
 
 public class SendRequest extends BaseWorker {
+    public static ThreadStatus status;
     private Callback callback;
-
     private Request request;
 
     public SendRequest(String name, Request request, Callback callback) {
@@ -18,7 +20,8 @@ public class SendRequest extends BaseWorker {
 
     @Override
     public void run() {
-        System.out.println("RUN");
+        System.out.println("--- RUN Request ---");
+        status = ThreadStatus.Running;
         enableRunning();
         try {
             RequestParameter requestParameter = new RequestParameter();
@@ -33,18 +36,15 @@ public class SendRequest extends BaseWorker {
                 case PUT:
                 case DELETE:
                 case PATCH:
-//                    requestParameter.post(request.requestBody, request.url);
-//                    break;
                 default:
                     return;
             }
-
+            //
             requestCore.request(requestParameter, new RequestCallback() {
                 @Override
                 public void success(StringBuilder data) {
                     callback.success(data);
                 }
-
                 @Override
                 public void fail(String msg) {
                     callback.fail(msg);
@@ -53,6 +53,7 @@ public class SendRequest extends BaseWorker {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+        status = ThreadStatus.Complete;
     }
 
     public interface Callback {
