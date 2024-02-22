@@ -8,10 +8,12 @@ import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 
 public class MyBot extends TelegramLongPollingBot {
     public static String token = "6640509759:AAHj0Rmrq6lhczZNQiXfOypvsaWiqRfBVfA";
+
     @Override
     public void onUpdateReceived(org.telegram.telegrambots.meta.api.objects.Update update) {
         //Gửi lên Channel khi websites bị lỗi
     }
+
     @Override
     public String getBotUsername() {
         return "JAVA_Favorite_Bot";
@@ -21,9 +23,9 @@ public class MyBot extends TelegramLongPollingBot {
         super(botToken);
     }
 
-    public void sendMessage(String text){
+    public void sendMessage(String text,String idChannel) {
         SendMessage sendMessage = new SendMessage();
-        sendMessage.setChatId("@Test_Bot_Java");
+        sendMessage.setChatId(idChannel);
         sendMessage.setText(text);
 
         try {
@@ -33,7 +35,7 @@ public class MyBot extends TelegramLongPollingBot {
         }
     }
 
-    public static void createBot(){
+    public void createBot() {
         try {
             TelegramBotsApi botsApi = new TelegramBotsApi(DefaultBotSession.class);
             MyBot myBot = new MyBot(MyBot.token);

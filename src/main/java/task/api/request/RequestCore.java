@@ -10,7 +10,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
-public class RequestCore  {
+public class RequestCore {
     /* **********************************************************************
      * Area : Variable - Const
      ********************************************************************** */
@@ -22,7 +22,6 @@ public class RequestCore  {
      * Area : Variable
      ********************************************************************** */
     private final OkHttpClient client;
-    private final StringBuilder responseResult = new StringBuilder();
 
     /* **********************************************************************
      * Area : Constructor
@@ -47,6 +46,9 @@ public class RequestCore  {
         } else if (parameter.requestType == null) {
             callback.fail(String.format(ERROR_INPUT, "parameter.requestType"));
             return;
+        } else if (!Utility.isUrlValidFormat(parameter.url)) {
+            callback.fail(String.format(ERROR_INPUT, "parameter.url"));
+            return;
         }
         try {
             Request.Builder builder = new Request.Builder();
@@ -60,12 +62,6 @@ public class RequestCore  {
                     break;
                 case POST:
                     builder.url(parameter.url);
-//                    if (parameter.parameters != null) {
-//                        body = buildPostBodyForm(parameter.parameters);
-//                    }
-//                    if (parameter.json != null) {
-//                        body = buildPostBodyJson(parameter.json);
-//                    }
                     body = buildPostBodyJson(parameter.json);
                 case PUT:
                 case DELETE:
@@ -91,19 +87,12 @@ public class RequestCore  {
                 callback.prepare();
                 Request request = builder.build();
                 Response response = client.newCall(request).execute();
-                responseResult.append("--- Result Response ---" + "\n");
-                responseResult.append("URL Request : " + parameter.url + "\n");
-                responseResult.append("Time Request : " + (common.model.Response.list.size() + 1) + "\n");
-                responseResult.append("Request Method : " + request.method() + "\n");
-                responseResult.append("Response Code : " + response.code() + "\n");
-                if (!response.message().isEmpty()){
-                    responseResult.append("Response Message : " + response.message() + "\n");
+                if (response == null){
+                    callback.fail("Response Null");
+                    return;
                 }
-                responseResult.append("--- End Response ---" + "\n");
-                //Thêm kết quả Request vào danh sách kết quả.
-                common.model.Response.list.add(new common.model.Response(parameter.url, response.code(), response.message(), response.message()));
-                callback.success(responseResult);
-                responseResult.setLength(0);
+                common.model.Response resp = new common.model.Response(parameter.url, response.code(), parameter.requestType.toString(), response.message());
+                callback.success(resp);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -198,7 +187,7 @@ public class RequestCore  {
      * Area : Function - Private - Initialize
      ********************************************************************** */
     private OkHttpClient buildRequestClient(int timeout) {
-        System.out.println("--- Create OkHttpClient ---");
+        System.out.println("\n" + "---> Build Client ---");
         //Tạo một phiên bản của OkHttpClient.Builder và định cấu hình.
         OkHttpClient.Builder builder;
         try {

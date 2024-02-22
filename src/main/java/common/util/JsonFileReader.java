@@ -1,30 +1,32 @@
 package common.util;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import common.model.WebsiteLink;
+import common.model.TelegramChannel;
+import common.model.TelegramChannelWrapper;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.List;
 
 public class JsonFileReader {
 
-    public static List<WebsiteLink> readFIle() {
+    public static String getPathFileJson() {
         ClassLoader classLoader = JsonFileReader.class.getClassLoader();
         File file = new File(classLoader.getResource("Websites.json").getFile());
         String jsonFilePath = file.getAbsolutePath();
-        List<WebsiteLink> websiteLinks = readFromJsonFile(jsonFilePath);
-        return websiteLinks;
+        return jsonFilePath;
     }
 
-    private static List<WebsiteLink> readFromJsonFile(String jsonFilePath) {
+    public static TelegramChannel readFromJsonFile() {
         ObjectMapper objectMapper = new ObjectMapper();
         try {
-            return Arrays.asList(objectMapper.readValue(new File(jsonFilePath), WebsiteLink[].class));
+            File file = new File(getPathFileJson());
+            TelegramChannelWrapper wrapper = objectMapper.readValue(file, TelegramChannelWrapper.class);
+            TelegramChannel telegramChannel = wrapper.getTelegramChannel();
+            return telegramChannel;
         } catch (IOException e) {
+            // Thêm xử lý cho IOException
             e.printStackTrace();
-            return null;
+            throw new RuntimeException("Error reading from JSON file", e);
         }
     }
 }

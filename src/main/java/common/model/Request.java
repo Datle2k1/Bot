@@ -6,7 +6,7 @@ import task.api.request.RequestMethod;
 public class Request {
     public RequestMethod method;
     public String url;
-    public RequestBody requestBody ;
+    public RequestBody requestBody;
 
     public Request(String url) {
         this(RequestMethod.GET, url);

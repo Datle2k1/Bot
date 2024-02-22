@@ -1,22 +1,15 @@
-[
-  {
-    "name": "Google",
-    "url": "https://www.google.com"
-  },
-  {
-    "name": "Facebook",
-    "url": "https://www.facebook.com"
-  },
-  {
-    "name": "Twitter",
-    "url": "https://twitter.com/?lang=vi"
-  },
-  {
-    "name": "Twitter",
-    "url": "https://www.google.com"
-  },
-  {
-    "name": "test 4",
-    "url": "https://www.facebook.com"
+{
+  "telegramChannel": {
+    "idChannel": "@Test_Bot_Java",
+    "scheduleRequest":{
+        "period" : 30
+    },
+    "websitesLinks": [
+      {"name": "Youtube", "link": "https://www.youtube.com/"},
+      {"name": "Facebook", "link": "https://www.facebook.com/"},
+      {"name": "Google Docs", "link": "https://docs.google.com/document/u/0/?hl=vi"},
+      {"name": "MeTruyenCV", "link": "https://metruyencv.com/"},
+      {"name": "Twitter", "link": "https://twitter.com/?lang=vi"}
+    ]
   }
-]
+}

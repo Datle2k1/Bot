@@ -1,5 +1,7 @@
 package task.api.request;
 
+import common.model.Response;
+
 public abstract class RequestCallback {
     /* **********************************************************************
      * Area : Function
@@ -8,7 +10,8 @@ public abstract class RequestCallback {
     /**
      * Function call before make request
      */
-    public void prepare() {}
+    public void prepare() {
+    }
 
     /* **********************************************************************
      * Area : Function - Abstract
@@ -17,9 +20,9 @@ public abstract class RequestCallback {
     /**
      * Function call when request success & get response
      *
-     * @param data response
+     * @param response response
      */
-    public abstract void success(StringBuilder data);
+    public abstract void success(Response response);
 
     /**
      * Function call when something wrong though request session

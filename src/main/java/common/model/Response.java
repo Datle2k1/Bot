@@ -1,14 +1,10 @@
 package common.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Response {
     private String url;
     private int code;
     private String method;
     private String message;
-    public static List<Response> list = new ArrayList<>();
 
     public Response(String url, int code, String method, String message) {
         this.url = url;
