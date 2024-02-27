@@ -103,6 +103,35 @@
           "value" : "false"
         }],
       "parameters": []
+    },
+    {
+      "name": "Twitter",
+      "link": "https://twitter.com/?lang=vi",
+      "method": "PATCH",
+      "bodyType" : "JSON",
+      "headers" :[
+        {
+          "key" : "authorization",
+          "value" : "false"
+        }],
+      "parameters": []
+    },
+    {
+      "name": "Twitter",
+      "link": "https://twitter.com/?lang=vi",
+      "method": "DELETE",
+      "bodyType" : "DATA_FORM",
+      "headers" :[
+        {
+          "key" : "authorization",
+          "value" : "false"
+        }],
+      "parameters": [
+        {
+          "key": "value1",
+          "value": "value2"
+        }
+      ]
     }
   ]
 }

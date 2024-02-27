@@ -6,9 +6,11 @@ import common.model.ConfigFileJson;
 import common.util.CheckCodeResponse;
 import common.util.RequestStatus;
 import common.util.Utility;
+import org.telegram.telegrambots.meta.TelegramBotsApi;
+import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 import task.MyBot;
 import task.SendRequest;
-import task.api.request.RequestBody;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -21,9 +23,13 @@ import static common.util.RequestStatus.Complete;
 import static common.util.RequestStatus.notComplete;
 
 public class Manager {
+    /* **********************************************************************
+     * Area : Variable - Const
+     ********************************************************************** */
     private static ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
-    private static MyBot bot = new MyBot("6640509759:AAHj0Rmrq6lhczZNQiXfOypvsaWiqRfBVfA");
     public static RequestStatus status;
+    //Tao doi tuong bot
+    private MyBot bot;
     //Khai báo list lưu trữ response
     private List<Response> list = new ArrayList<>();
     //Khai báo biến đếm số lần Request 1 lượt các link trong file Json
@@ -34,11 +40,15 @@ public class Manager {
     private int period;
     private int timeout;
 
+    /* **********************************************************************
+     * Area : Function  - Public
+     ********************************************************************** */
+
     //Chạy các task của Bot
     public void run() throws IOException {
         //Chạy Bot
         System.out.println("--- Create Bot ---");
-        bot.createBot();
+        createBot();
         status = Complete;
         //Lấy và kiểm tra thông tin từ file Config configFileJson, listWebLinks, idChannel, Schedule Period,Timeout.
         System.out.println("--- Get Information From File Json ---");
@@ -70,7 +80,7 @@ public class Manager {
     }
 
     //Get information from File Json
-    private void getInformationFromFileJson() throws IOException {
+    public void getInformationFromFileJson() throws IOException {
         //Tạo đối tượng ConfigFileJSon
         ConfigFileJson configFileJson = Utility.readFromJsonFile();
         Utility.checkInformationFromFIleJson(configFileJson);
@@ -96,6 +106,17 @@ public class Manager {
         }
     }
 
+    //Create Bot
+    public void createBot() {
+        try {
+            TelegramBotsApi botsApi = new TelegramBotsApi(DefaultBotSession.class);
+            bot = new MyBot(MyBot.token);
+            botsApi.registerBot(bot);
+        } catch (TelegramApiException e) {
+            e.printStackTrace();
+        }
+    }
+
     //New Callback
     public SendRequest.Callback newCallback(ConfigFileJson.WebsiteLink w){
         return new SendRequest.Callback() {
@@ -103,8 +124,8 @@ public class Manager {
             public void success(Response response) {
                 list.add(response);
                 //Kiểm tra Response Code, lấy message code tương ứng
-                String messageCode = CheckCodeResponse.checkCodeResponse(response.getCode());
-                if (response.getCode()/100 != 2) {
+                String messageCode = CheckCodeResponse.checkCodeResponse(response.code);
+                if (response.code/100 != 2) {
                     bot.sendMessage(Utility.getResponseString(response, w, messageCode),idChannel);
                     System.out.println(Utility.getResponseString(response,w,messageCode));
                 } else {

@@ -44,13 +44,13 @@ public class RequestParameter {
     /* **********************************************************************
      * Area : Function - Public - Post
      ********************************************************************** */
-    public void post(String url, RequestMethod method, RequestBody bodyType) {
-        post(url, method, bodyType, null,null);
-    }
-
-    public void post(String url, RequestMethod method,RequestBody bodyType,  Map<String, String> parameters) {
-        post(url, method, bodyType, parameters,null);
-    }
+//    public void post(String url, RequestMethod method, RequestBody bodyType) {
+//        post(url, method, bodyType, null,null);
+//    }
+//
+//    public void post(String url, RequestMethod method,RequestBody bodyType,  Map<String, String> parameters) {
+//        post(url, method, bodyType, parameters,null);
+//    }
 
     public void post(String url, RequestMethod method, RequestBody bodyType, Map<String, String> parameters, Map<String, String> headers) {
         this.method = method;

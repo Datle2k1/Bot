@@ -16,9 +16,7 @@ import static task.api.request.RequestBody.JSON;
 
 public class Utility {
     /* *******************************************************************************
-     * Area : Function - Public - CHECK,GET INFORMATION REQUEST,WEBSITE FROM FILE JSON
-     * Information before Request : idChannel, timeout, period, link. method, bodyType.
-     * Information Request :headers, parameters.
+     * Area : Function - Read File Json
      **********************************************************************************/
     //Read file Json tra ve doi tuong ConfigFileJson.
     public static ConfigFileJson readFromJsonFile() throws IOException {
@@ -35,6 +33,9 @@ public class Utility {
         }
     }
 
+    /* ************************************************************************************
+     * Area : Function - Check idChannel, timeout, period, listWeblinks, bodyType, method
+     ***************************************************************************************/
     //Kiem tra idChannel,timeout, period, listweblink.
     public static void checkInformationFromFIleJson(ConfigFileJson configFileJson) {
         if (configFileJson.getIdChannel().isEmpty()) {
@@ -72,6 +73,9 @@ public class Utility {
         return false;
     }
 
+    /* ************************************************************************************
+     * Area : Function - Check & Get header, parameter, link.
+     ***************************************************************************************/
     //Kiem tra va lay Parameter neu co
     public static Map<String, String> getParameters(ConfigFileJson.WebsiteLink w) {
         List<ConfigFileJson.WebsiteLink.Parameter> listParameter = w.getListParameter();
@@ -136,12 +140,12 @@ public class Utility {
         StringBuilder respString = new StringBuilder();
         respString.append("--- Result Response ---" + "\n");
         respString.append("Websites : " + w.getName() + "\n");
-        respString.append("URL Request : " + response.getUrl() + "\n");
-        respString.append("Request Method : " + response.getMethod() + "\n");
-        respString.append("Response Code : " + response.getCode() + "\n");
+        respString.append("URL Request : " + response.url+ "\n");
+        respString.append("Request Method : " + response.method + "\n");
+        respString.append("Response Code : " + response.code + "\n");
         respString.append("Message Code : " + messageCode + "\n");
-        if (!response.getMessage().isEmpty()) {
-            respString.append("Response Message : " + response.getMessage() + "\n");
+        if (!response.message.isEmpty()) {
+            respString.append("Response Message : " + response.message + "\n");
         }
         respString.append("--- End Response ---");
         return String.valueOf(respString);

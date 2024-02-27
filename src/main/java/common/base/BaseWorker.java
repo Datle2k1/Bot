@@ -6,12 +6,21 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public abstract class BaseWorker implements Runnable {
+    /* **********************************************************************
+     * Area : Variable
+     ********************************************************************** */
     public String name;
-    protected String currentDir; //Chuoi luu tru thu muc lam viec hien tai
+    //Chuoi luu tru thu muc lam viec hien tai
+    protected String currentDir;
     protected boolean isRunning;
-    protected ExecutorService executorService; //Doi tuong quan ly luong cong viec
+    //Doi tuong quan ly luong cong viec
+    protected ExecutorService executorService;
+    //Khai bao doi tuong requestCore
     protected RequestCore requestCore;
 
+    /* **********************************************************************
+     * Area : Constructor
+     ********************************************************************** */
     public BaseWorker(String name,int timeout) {
         this.name = name;
         this.currentDir = System.getProperty("user.dir");
@@ -20,6 +29,9 @@ public abstract class BaseWorker implements Runnable {
         initThreadPool(0);
     }
 
+    /* **********************************************************************
+     * Area : Function - Public
+     ********************************************************************** */
     //Tạo ThreadPool chứa các Thread mới khi các Thread ban đầu vẫn đang hoạt động
     public void initThreadPool(int number) {
         if (number <= 0) {
@@ -33,6 +45,9 @@ public abstract class BaseWorker implements Runnable {
     public void run() {
     }
 
+    /* **********************************************************************
+     * Area : Function - Private
+     ********************************************************************** */
     protected void enableRunning() {
         isRunning = true;
     }

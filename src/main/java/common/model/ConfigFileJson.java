@@ -2,22 +2,25 @@ package common.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import task.api.request.RequestBody;
-import task.api.request.RequestMethod;
 
 import java.util.List;
-import java.util.Map;
 
 public class ConfigFileJson {
+    /* **********************************************************************
+     * Area : Variable : idChannel, listWeblink, reqeust
+     ********************************************************************** */
     @JsonProperty("idChannel")
     private String idChannel;
     @JsonProperty("websitesLinks")
     private List<WebsiteLink> listWebLink;
     @JsonProperty("request")
-    private Request reqeust;
+    private Request request;
 
+    /* **********************************************************************
+     * Area : Getter
+     ********************************************************************** */
     public Request getRequest() {
-        return reqeust;
+        return request;
     }
 
     public String getIdChannel() {
@@ -28,11 +31,20 @@ public class ConfigFileJson {
         return listWebLink;
     }
 
+    /* **********************************************************************
+     * Area : Class - Public : Request
+     ********************************************************************** */
     public static class Request{
+        /* **********************************************************************
+         * Area : Variable
+         ********************************************************************** */
         @JsonProperty("timeout")
         private int timeout;
         @JsonProperty("schedule")
         private Schedule schedule;
+        /* **********************************************************************
+         * Area : Getter
+         ********************************************************************** */
         public int getTimeout() {
             return timeout;
         }
@@ -41,17 +53,31 @@ public class ConfigFileJson {
             return schedule;
         }
 
+        /* **********************************************************************
+         * Area : Class - Public : Schedule
+         ********************************************************************** */
         public static class Schedule{
+            /* **********************************************************************
+             * Area : Variable
+             ********************************************************************** */
             @JsonProperty("period")
             private int period;
+            /* **********************************************************************
+             * Area : Getter
+             ********************************************************************** */
             public int getPeriod() {
                 return period;
             }
         }
     }
 
-    @JsonFormat()
+    /* **********************************************************************
+     * Area : Class - Public : WebsiteLink
+     ********************************************************************** */
     public static class WebsiteLink {
+        /* **********************************************************************
+         * Area : Variable
+         ********************************************************************** */
         @JsonProperty("name")
         private String name;
         @JsonProperty("link")
@@ -64,6 +90,9 @@ public class ConfigFileJson {
         private List<Header> listHeader;
         @JsonProperty("parameters")
         private List<Parameter> listParameter;
+        /* **********************************************************************
+         * Area : Getter
+         ********************************************************************** */
         public List<Header> getListHeader() {
             return listHeader;
         }
@@ -86,12 +115,21 @@ public class ConfigFileJson {
         public String getBodyType() {
             return bodyType;
         }
+
+        /* **********************************************************************
+         * Area : Class - Public : Header
+         ********************************************************************** */
         public static class Header{
+            /* **********************************************************************
+             * Area : Variable
+             ********************************************************************** */
             @JsonProperty("key")
             private String key;
             @JsonProperty("value")
             private String value;
-
+            /* **********************************************************************
+             * Area : Getter
+             ********************************************************************** */
             public String getKey() {
                 return key;
             }
@@ -100,12 +138,20 @@ public class ConfigFileJson {
             }
         }
 
+        /* **********************************************************************
+         * Area : Class - Public : Parameter
+         ********************************************************************** */
         public static class Parameter{
+            /* **********************************************************************
+             * Area : Variable
+             ********************************************************************** */
             @JsonProperty("key")
             private String key;
             @JsonProperty("value")
             private String value;
-
+            /* **********************************************************************
+             * Area : Getter
+             ********************************************************************** */
             public String getKey() {
                 return key;
             }

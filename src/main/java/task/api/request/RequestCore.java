@@ -12,6 +12,7 @@ import java.util.concurrent.TimeUnit;
 
 import static task.api.request.RequestBody.DATA_FORM;
 import static task.api.request.RequestBody.JSON;
+import static task.api.request.RequestMethod.*;
 
 public class RequestCore {
     /* **********************************************************************
@@ -22,7 +23,7 @@ public class RequestCore {
     private final String ERROR_INPUT = "Input[%s] invalid";
 
     /* **********************************************************************
-     * Area : Variable
+     * Area : Variable : Create Client
      ********************************************************************** */
     private final OkHttpClient client;
 
@@ -47,7 +48,7 @@ public class RequestCore {
             callback.fail(String.format(ERROR_INPUT, "requestParameter.url"));
             return;
         } else if (requestParameter.method == null) {
-            callback.fail(String.format(ERROR_INPUT, "requestParameter.requestType"));
+            callback.fail(String.format(ERROR_INPUT, "requestParameter.method"));
             return;
         } else if (!Utility.isUrlValidFormat(requestParameter.url)) {
             callback.fail(String.format(ERROR_INPUT, "requestParameter.url"));
@@ -56,31 +57,28 @@ public class RequestCore {
         try {
             Request.Builder builder = new Request.Builder();
             RequestBody body = null;
+            RequestMethod method = requestParameter.method;
             StringBuilder error = new StringBuilder();
             String url;
-            switch (requestParameter.method) {
-                case GET:
+            if (method == GET || method == HEAD ||method == DELETE) {
+                try {
                     url = buildGetUrl(requestParameter.url, requestParameter.parameters);
-                    System.out.println(url);
-                    builder.url(url);
-                    break;
-                case HEAD:
-                case POST:
-                    builder.url(requestParameter.url);
-                    if (requestParameter.bodyType == JSON){
-                        body = buildPostBodyJson(requestParameter.json);
-                        break;
-                    }
-                    if (requestParameter.bodyType == DATA_FORM) {
-                        body = buildPostBodyForm(requestParameter.parameters);
-                        break;
-                    }
-                case PUT:
-                case DELETE:
-                case PATCH:
-                default:
-                    callback.fail(String.format(ERROR_INPUT, "requestParameter.requestType"));
-                    return;
+                } catch (UnsupportedEncodingException ex) {
+                    throw new RuntimeException(ex);
+                }
+                System.out.println(url);
+                builder.url(url);
+            } else if (method == POST || method == PATCH ||method == PUT) {
+                builder.url(requestParameter.url);
+                if (requestParameter.bodyType == JSON) {
+                    body = buildPostBodyJson(requestParameter.json);
+
+                }  else if(requestParameter.bodyType == DATA_FORM) {
+                    body = buildPostBodyForm(requestParameter.parameters);
+                }
+            } else {
+                callback.fail(String.format(ERROR_INPUT, "requestParameter.method"));
+                return;
             }
             error.append(buildHeader(builder, requestParameter.headers));
             error.append(buildMethod(builder, requestParameter.method, body));

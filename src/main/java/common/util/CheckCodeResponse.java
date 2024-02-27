@@ -1,6 +1,9 @@
 package common.util;
 
 public class CheckCodeResponse {
+    /* **********************************************************************
+     * Area : Function - Public
+     ********************************************************************** */
     public static String checkCodeResponse(int code) {
         switch (code / 100) {
             case 1:
@@ -18,6 +21,9 @@ public class CheckCodeResponse {
         }
     }
 
+    /* **********************************************************************
+     * Area : Function - Private
+     ********************************************************************** */
     private static String informationalResponse(int code) {
         switch (code) {
             case 100:
