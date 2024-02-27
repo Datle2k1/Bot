@@ -10,6 +10,9 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
+import static task.api.request.RequestBody.DATA_FORM;
+import static task.api.request.RequestBody.JSON;
+
 public class RequestCore {
     /* **********************************************************************
      * Area : Variable - Const
@@ -33,53 +36,54 @@ public class RequestCore {
     /* **********************************************************************
      * Area : Function - Public
      ********************************************************************** */
-    public void request(RequestParameter parameter, RequestCallback callback) {
+    public void request(RequestParameter requestParameter, RequestCallback callback) {
         System.out.println("--- Get Response ---");
         if (callback == null) {
             return;
-        } else if (parameter == null) {
-            callback.fail(String.format(ERROR_INPUT, "parameter"));
+        } else if (requestParameter == null) {
+            callback.fail(String.format(ERROR_INPUT, "requestParameter"));
             return;
-        } else if (parameter.url == null) {
-            callback.fail(String.format(ERROR_INPUT, "parameter.url"));
+        } else if (requestParameter.url == null) {
+            callback.fail(String.format(ERROR_INPUT, "requestParameter.url"));
             return;
-        } else if (parameter.requestType == null) {
-            callback.fail(String.format(ERROR_INPUT, "parameter.requestType"));
+        } else if (requestParameter.method == null) {
+            callback.fail(String.format(ERROR_INPUT, "requestParameter.requestType"));
             return;
-        } else if (!Utility.isUrlValidFormat(parameter.url)) {
-            callback.fail(String.format(ERROR_INPUT, "parameter.url"));
+        } else if (!Utility.isUrlValidFormat(requestParameter.url)) {
+            callback.fail(String.format(ERROR_INPUT, "requestParameter.url"));
             return;
         }
         try {
             Request.Builder builder = new Request.Builder();
             RequestBody body = null;
             StringBuilder error = new StringBuilder();
-            switch (parameter.requestType) {
+            String url;
+            switch (requestParameter.method) {
                 case GET:
-                case HEAD:
-                    String url = buildGetUrl(parameter.url, parameter.parameters);
+                    url = buildGetUrl(requestParameter.url, requestParameter.parameters);
+                    System.out.println(url);
                     builder.url(url);
                     break;
+                case HEAD:
                 case POST:
-                    builder.url(parameter.url);
-                    body = buildPostBodyJson(parameter.json);
+                    builder.url(requestParameter.url);
+                    if (requestParameter.bodyType == JSON){
+                        body = buildPostBodyJson(requestParameter.json);
+                        break;
+                    }
+                    if (requestParameter.bodyType == DATA_FORM) {
+                        body = buildPostBodyForm(requestParameter.parameters);
+                        break;
+                    }
                 case PUT:
                 case DELETE:
                 case PATCH:
-                    builder.url(parameter.url);
-                    if (parameter.parameters != null) {
-                        body = buildPostBodyForm(parameter.parameters);
-                    }
-                    if (parameter.json != null) {
-                        body = buildPostBodyJson(parameter.json);
-                    }
-                    break;
                 default:
-                    callback.fail(String.format(ERROR_INPUT, "parameter.requestType"));
+                    callback.fail(String.format(ERROR_INPUT, "requestParameter.requestType"));
                     return;
             }
-            error.append(buildHeader(builder, parameter.headers));
-            error.append(buildMethod(builder, parameter.requestType, body));
+            error.append(buildHeader(builder, requestParameter.headers));
+            error.append(buildMethod(builder, requestParameter.method, body));
 
             if (error.length() > 0) {
                 callback.fail(error.toString());
@@ -87,15 +91,13 @@ public class RequestCore {
                 callback.prepare();
                 Request request = builder.build();
                 Response response = client.newCall(request).execute();
-                if (response == null){
-                    callback.fail("Response Null");
-                    return;
+                if (requestParameter.headers != null){
+//                    System.out.println(response.body().string());
                 }
-                common.model.Response resp = new common.model.Response(parameter.url, response.code(), parameter.requestType.toString(), response.message());
+                common.model.Response resp = new common.model.Response(requestParameter.url, response.code(), requestParameter.method.toString(), response.message());
                 callback.success(resp);
             }
         } catch (Exception e) {
-            e.printStackTrace();
             callback.fail(e.getMessage());
         }
     }

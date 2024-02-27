@@ -7,7 +7,7 @@ public class RequestParameter {
     /* **********************************************************************
      * Area : Variable
      ********************************************************************** */
-    public RequestMethod requestType;
+    public RequestMethod method;
     public RequestBody bodyType;
     public String url;
     public Map<String, String> headers;
@@ -23,34 +23,37 @@ public class RequestParameter {
     /* **********************************************************************
      * Area : Function - Public - Get
      ********************************************************************** */
-    public void get(String url) {
-        get(url, null, null);
-    }
+//    public void get(String url, RequestMethod method) {
+//        get(url,method,null,null);
+//    }
+//
+//    public void get(String url, RequestMethod method, Map<String, String> parameters) {
+//        get(url, method ,null, parameters);
+//    }
+//
+//    public void get(String url, Map<String, String> headers, RequestMethod method) {
+//        get(url, method ,headers, null);
 
-    public void get(String url, Map<String, String> parameters) {
-        get(url, null, parameters);
-    }
-
-    public void get(String url, Map<String, String> headers, Map<String, String> parameters) {
-        requestType = RequestMethod.GET;
+    public void get(String url, RequestMethod method,Map<String, String> parameters, Map<String, String> headers) {
         this.url = url;
-        this.headers = headers;
+        this.method = method;
         this.parameters = parameters;
+        this.headers = headers;
     }
 
     /* **********************************************************************
      * Area : Function - Public - Post
      ********************************************************************** */
-    public void post(RequestBody bodyType, String url) {
-        post(bodyType, url, null, null);
+    public void post(String url, RequestMethod method, RequestBody bodyType) {
+        post(url, method, bodyType, null,null);
     }
 
-    public void post(RequestBody bodyType, String url, Map<String, String> parameters) {
-        post(bodyType, url, null, parameters);
+    public void post(String url, RequestMethod method,RequestBody bodyType,  Map<String, String> parameters) {
+        post(url, method, bodyType, parameters,null);
     }
 
-    public void post(RequestBody bodyType, String url, Map<String, String> headers, Map<String, String> parameters) {
-        this.requestType = RequestMethod.POST;
+    public void post(String url, RequestMethod method, RequestBody bodyType, Map<String, String> parameters, Map<String, String> headers) {
+        this.method = method;
         this.bodyType = bodyType;
         this.url = url;
         this.headers = headers;
@@ -69,7 +72,7 @@ public class RequestParameter {
     }
 
     public void postForm(String url, Map<String, String> headers, Map<String, String> parameters) {
-        this.requestType = RequestMethod.POST;
+        this.method = RequestMethod.POST;
         this.bodyType = RequestBody.DATA_FORM;
         this.url = url;
         this.headers = headers;
@@ -88,7 +91,7 @@ public class RequestParameter {
     }
 
     public void postJson(String url, Map<String, String> headers, String json) {
-        this.requestType = RequestMethod.POST;
+        this.method = RequestMethod.POST;
         this.bodyType = RequestBody.JSON;
         this.url = url;
         this.headers = headers;

@@ -30,6 +30,8 @@ public class MyBot extends TelegramLongPollingBot {
 
         try {
             execute(sendMessage);
+        } catch (NullPointerException e){
+            throw new NullPointerException("--- Exceoption : \nError text null : " + e);
         } catch (TelegramApiException e) {
             throw new RuntimeException(e);
         }

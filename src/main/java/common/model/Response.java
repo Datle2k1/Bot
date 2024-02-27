@@ -17,31 +17,18 @@ public class Response {
         return url;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
-    }
 
     public int getCode() {
         return code;
     }
 
-    public void setCode(int code) {
-        this.code = code;
-    }
 
     public String getMethod() {
         return method;
     }
 
-    public void setMethod(String method) {
-        this.method = method;
-    }
 
     public String getMessage() {
         return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
     }
 }

@@ -1,0 +1,108 @@
+{
+  "idChannel": "@Test_Bot_Java",
+  "request": {
+    "timeout": 20,
+    "schedule": {
+      "period": 20
+    }
+  },
+  "websitesLinks": [
+    {
+      "name": "Chapgpt",
+      "link": "https://chat.openai.com/c/21797749-fd1a-45d9-8ca9-18e346b2604f",
+      "method": "GET",
+      "bodyType" : "JSON",
+      "parameters": []
+    },
+    {
+      "name" : "Test Website"
+    },
+    {
+      "name": "Youtube",
+      "link": "https://www.youtube.com/",
+      "method": "GET",
+      "bodyType": "JSON",
+      "headers" : [
+        {
+          "key": "useragent",
+          "value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3"
+        },
+        {
+          "key" : "authorization",
+          "value" : "false"
+        }],
+      "parameters": [
+        {
+          "key": "key1",
+          "value" : "value1"
+        },
+        {
+          "key": "key2",
+          "value" : "value2"
+        }
+      ]
+    },
+    {
+      "name": "Facebook",
+      "link": "https://www.facebook.com/",
+      "method": "POST",
+      "bodyType" : "JSONn",
+      "headers" : [
+        {
+          "key" : "authorization",
+          "value" : "false"
+        }],
+      "parameters": [
+        {
+          "key": "value1",
+          "value": "value2"
+        }
+      ]
+    },
+    {
+      "name": "Google Docs",
+      "link": "https://docs.google.com/document/u/0/?hl=vi",
+      "method": "GETT",
+      "bodyType": "",
+      "headers" :[
+        {
+          "key" : "authorization",
+          "value" : "false"
+        }],
+      "parameters": []
+    },
+    {
+      "name": "NetTruyen",
+      "link": "https://www.nettruyenbb.com/Secure/Login.aspx?returnurl=%2F",
+      "method": "POST",
+      "bodyType" : "DATA_FORM",
+      "headers" :[
+        {
+          "key" : "authorization",
+          "value" : "true"
+        }],
+      "parameters": [
+        {
+          "key": "email",
+          "value": "datletuan110621@gmail.com"
+        },
+        {
+          "key": "password",
+          "value": "11062001Dat"
+        }
+      ]
+    },
+    {
+      "name": "Twitter",
+      "link": "https://twitter.com/?lang=vi",
+      "method": "POST",
+      "bodyType" : "JSON",
+      "headers" :[
+        {
+          "key" : "authorization",
+          "value" : "false"
+        }],
+      "parameters": []
+    }
+  ]
+}

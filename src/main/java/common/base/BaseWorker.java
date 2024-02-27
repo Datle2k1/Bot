@@ -7,16 +7,16 @@ import java.util.concurrent.Executors;
 
 public abstract class BaseWorker implements Runnable {
     public String name;
-    protected String currentDir;
+    protected String currentDir; //Chuoi luu tru thu muc lam viec hien tai
     protected boolean isRunning;
-    protected ExecutorService executorService;
+    protected ExecutorService executorService; //Doi tuong quan ly luong cong viec
     protected RequestCore requestCore;
 
-    public BaseWorker(String name) {
+    public BaseWorker(String name,int timeout) {
         this.name = name;
         this.currentDir = System.getProperty("user.dir");
         this.isRunning = false;
-        this.requestCore = new RequestCore(10);
+        this.requestCore = new RequestCore(timeout);
         initThreadPool(0);
     }
 
@@ -33,15 +33,7 @@ public abstract class BaseWorker implements Runnable {
     public void run() {
     }
 
-    public boolean isRunning() {
-        return isRunning;
-    }
-
     protected void enableRunning() {
         isRunning = true;
-    }
-
-    protected void disableRunning() {
-        isRunning = false;
     }
 }
