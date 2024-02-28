@@ -4,18 +4,13 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9e771420-aa80-4a07-9f8c-71d1aef6fd25" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/bot/BotStatus.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/bot/MyBot.java" afterDir="false" />
+    <list default="true" id="9e771420-aa80-4a07-9f8c-71d1aef6fd25" name="Changes" comment="commit: - Thêm comment ,">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/bin/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bin/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/common/base/BaseWorker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/common/base/BaseWorker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/common/model/Response.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/common/model/Response.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/common/util/Utility.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/common/util/Utility.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/manager/Manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/manager/Manager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/task/MyBot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/task/MyBot.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/task/SendRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/task/SendRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/task/api/request/RequestCallback.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/task/api/request/RequestCallback.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/task/api/request/RequestCore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/task/api/request/RequestCore.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Websites.json" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,6 +44,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectCodeStyleSettingsMigration">
     <option name="version" value="2" />
   </component>
@@ -67,22 +65,42 @@
     &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
     &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;E:/Android_Roadmap/WorkSpace/CVcorp/Java/Bot&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/Android_Roadmap/WorkSpace/CVcorp/Java/Bot/src/main/resources&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;
   }
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\Android_Roadmap\WorkSpace\CVcorp\Java\Bot\src\main\resources" />
+      <recent name="E:\Android_Roadmap\WorkSpace\CVcorp\Java\Bot\src\main\java\bin" />
       <recent name="E:\Android_Roadmap\WorkSpace\CVcorp\Java\Bot\src\main\java" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\Android_Roadmap\WorkSpace\CVcorp\Java\Bot\src\main\assets" />
+      <recent name="E:\Android_Roadmap\WorkSpace\CVcorp\Java\Bot\src\main\java\common\config" />
+    </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="test" />
       <recent name="org.example" />
     </key>
   </component>
   <component name="RunManager" selected="Application.bin.Main">
+    <configuration name="JacksonExample" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="bin.JacksonExample" />
+      <module name="Bot.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.example.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="bot.tool.bin.Main" />
       <module name="Bot.main" />
@@ -101,7 +119,7 @@
       <module name="Bot.main" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="bin.*" />
+          <option name="PATTERN" value="org.example.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -153,10 +171,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.JacksonExample" />
+        <item itemvalue="Gradle.Bot [test]" />
         <item itemvalue="Application.bin.Main" />
         <item itemvalue="Application.Main" />
         <item itemvalue="Gradle.Bot [dependencies]" />
-        <item itemvalue="Gradle.Bot [test]" />
       </list>
     </recent_temporary>
   </component>
@@ -253,7 +272,42 @@
       <option name="project" value="LOCAL" />
       <updated>1706153052074</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="commit : + Tạo bot Telegram , lấy url từ Channel Telegram gửi kết quả Request lên lại Channel sau mỗi 20s.">
+      <created>1708374464246</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1708374464246</updated>
+    </task>
+    <task id="LOCAL-00014" summary="commit : + Bot Chạỵ lấy link từ file Json, lỗi hoặc code response 4xx,5xx sẽ đẩy lên Channel Telegram">
+      <created>1708507180167</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1708507180167</updated>
+    </task>
+    <task id="LOCAL-00015" summary="commit : + Bot lấy link, period, id Channel từ file Json, khởi tạo list lưu trữ các response trong class Manager, check code response đầy đủ hơn.">
+      <created>1708614331946</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1708614331946</updated>
+    </task>
+    <task id="LOCAL-00016" summary="commit : + Thêm &quot;header&quot; vào file Json, send Request Post có body, authen đơn giản , kiểm tra các giá trị dầu vào.">
+      <created>1709024287867</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1709024287867</updated>
+    </task>
+    <task id="LOCAL-00017" summary="commit: - Thêm comment, chỉnh sửa 1 số vị trí khác.">
+      <created>1709059117567</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1709059117568</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -280,16 +334,11 @@
     <MESSAGE value="commit : chia ra các package" />
     <MESSAGE value="commit : chia ra các package + sử dụng Callback" />
     <MESSAGE value="commit : sử dụng Jsoup đọc file html" />
-    <option name="LAST_COMMIT_MESSAGE" value="commit : sử dụng Jsoup đọc file html" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <breakpoint enabled="true" type="java-exception">
-          <properties class="java.lang.NullPointerException" package="java.lang" />
-          <option name="timeStamp" value="1" />
-        </breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="commit : + Tạo bot Telegram , lấy url từ Channel Telegram gửi kết quả Request lên lại Channel sau mỗi 20s." />
+    <MESSAGE value="commit : + Bot Chạỵ lấy link từ file Json, lỗi hoặc code response 4xx,5xx sẽ đẩy lên Channel Telegram" />
+    <MESSAGE value="commit : + Bot lấy link, period, id Channel từ file Json, khởi tạo list lưu trữ các response trong class Manager, check code response đầy đủ hơn." />
+    <MESSAGE value="commit : + Thêm &quot;header&quot; vào file Json, send Request Post có body, authen đơn giản , kiểm tra các giá trị dầu vào." />
+    <MESSAGE value="commit: - Thêm comment, chỉnh sửa 1 số vị trí khác." />
+    <option name="LAST_COMMIT_MESSAGE" value="commit: - Thêm comment, chỉnh sửa 1 số vị trí khác." />
   </component>
 </project>

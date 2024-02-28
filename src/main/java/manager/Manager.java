@@ -24,7 +24,7 @@ import static common.util.RequestStatus.notComplete;
 
 public class Manager {
     /* **********************************************************************
-     * Area : Variable - Const
+     * Area : Variable
      ********************************************************************** */
     private static ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
     public static RequestStatus status;
@@ -44,22 +44,22 @@ public class Manager {
      * Area : Function  - Public
      ********************************************************************** */
 
-    //Chạy các task của Bot
+    //Chat cac Tasks
     public void run() throws IOException {
-        //Chạy Bot
+        //Chay bot
         System.out.println("--- Create Bot ---");
         createBot();
         status = Complete;
-        //Lấy và kiểm tra thông tin từ file Config configFileJson, listWebLinks, idChannel, Schedule Period,Timeout.
+        //Kiem tra va lay thong tin tu file Json : configFileJson, listWebLinks, idChannel, period,timeout.
         System.out.println("--- Get Information From File Json ---");
         getInformationFromFileJson();
-        //Xếp lịch
+        //Xep lich
         System.out.println("--- Scheduler ---");
         scheduler.scheduleAtFixedRate(() -> {
             try {
                 System.out.println("--- Request Time : " + (++count) + "\n");
                 bot.sendMessage("--- Request Time : " + count, idChannel);
-                //Lấy thông tin Website từ listWebLinks
+                //Lay doi tuong websiteLinks tu listWebLinks
                 for (ConfigFileJson.WebsiteLink w :listWebLinks ) {
                     status = notComplete;
                     //Kiem tra bodyType,method
@@ -106,7 +106,7 @@ public class Manager {
         }
     }
 
-    //Create Bot
+    //Tao Bot
     public void createBot() {
         try {
             TelegramBotsApi botsApi = new TelegramBotsApi(DefaultBotSession.class);
@@ -117,7 +117,7 @@ public class Manager {
         }
     }
 
-    //New Callback
+    //Tao callback bat su kien
     public SendRequest.Callback newCallback(ConfigFileJson.WebsiteLink w){
         return new SendRequest.Callback() {
             @Override
@@ -129,7 +129,7 @@ public class Manager {
                     bot.sendMessage(Utility.getResponseString(response, w, messageCode),idChannel);
                     System.out.println(Utility.getResponseString(response,w,messageCode));
                 } else {
-                    System.out.println("\n" + Utility.getResponseString(response, w, messageCode) + "\n");
+                    System.out.println("\n" + Utility.getResponseString(response, w, messageCode));
                 }
                 status = Complete;
             }

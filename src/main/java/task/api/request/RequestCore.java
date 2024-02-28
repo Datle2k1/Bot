@@ -66,7 +66,6 @@ public class RequestCore {
                 } catch (UnsupportedEncodingException ex) {
                     throw new RuntimeException(ex);
                 }
-                System.out.println(url);
                 builder.url(url);
             } else if (method == POST || method == PATCH ||method == PUT) {
                 builder.url(requestParameter.url);
