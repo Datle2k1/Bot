@@ -38,38 +38,35 @@ public class Utility {
      ***************************************************************************************/
     //Kiem tra idChannel,timeout, period, listweblink.
     public static void checkInformationFromFIleJson(ConfigFileJson configFileJson) {
-        if (configFileJson.getIdChannel().isEmpty()) {
-            throw new RuntimeException("\nidChannel can't Empty");
+        if (configFileJson.getIdChannel() == null || configFileJson.getIdChannel().isEmpty()) {
+            throw new RuntimeException("\nidChannel null or Empty");
         }
         if (configFileJson.getRequest().getSchedule().getPeriod() <= 0 || configFileJson.getRequest().getTimeout() <= 0) {
             throw new RuntimeException("\nperiod & timeout must > 0 ");
         }
-        if (configFileJson.getListWebLink().isEmpty()) {
+        if (configFileJson.getListWebLink() == null || configFileJson.getListWebLink().isEmpty()) {
             throw new RuntimeException("\nList listWebLinks is Empty ");
+        }
+        if (configFileJson.getToken() == null || configFileJson.getToken().isEmpty()){
+            throw new RuntimeException("\nToken Bot null or Empty");
         }
     }
 
     //Kiem tra bodyType
     public static Boolean checkBodyType(ConfigFileJson.WebsiteLink w) {
-//        System.out.print("Check BodyType : ");
         if (!JSON.toString().equals(w.getBodyType()) && !DATA_FORM.toString().equals(w.getBodyType())) {
-//           System.out.println("bodyType != JSON,DATA_FORM");
             return false;
         }
-//        System.out.println("Checked");
         return true;
     }
 
     //Kiem tra method
     public static Boolean checkMethod(ConfigFileJson.WebsiteLink w) {
-//        System.out.print("Check Method : ");
         for (RequestMethod m : RequestMethod.values()) {
             if (w.getMethod().equals(m.toString())) {
-//                System.out.println("Checked");
                 return true;
             }
         }
-//        System.out.println("Error Method");
         return false;
     }
 
@@ -79,12 +76,9 @@ public class Utility {
     //Kiem tra va lay Parameter neu co
     public static Map<String, String> getParameters(ConfigFileJson.WebsiteLink w) {
         List<ConfigFileJson.WebsiteLink.Parameter> listParameter = w.getListParameter();
-//        System.out.print("Check ListParameter : ");
         if (listParameter == null || listParameter.isEmpty()) {
-//            System.out.println("null or Empty");
             return null;
         }
-//        System.out.println("Checked" );
         Map<String, String> parameters = new HashMap<>();
         for (ConfigFileJson.WebsiteLink.Parameter p : listParameter) {
             parameters.put(p.getKey(), p.getValue());
@@ -95,12 +89,9 @@ public class Utility {
     //Kiem tra va Lay Header neu co
     public static Map<String, String> getHeader(ConfigFileJson.WebsiteLink w) {
         List<ConfigFileJson.WebsiteLink.Header> listHeaders = w.getListHeader();
-//        System.out.print("Check List Headers : ");
         if (listHeaders == null || listHeaders.isEmpty()) {
-//            System.out.println("null or Empty");
             return null;
         }
-//        System.out.println("Checked" );
         Map<String, String> headers = new HashMap<>();
         for (ConfigFileJson.WebsiteLink.Header h : listHeaders) {
             if (!Boolean.valueOf(h.getValue())) {

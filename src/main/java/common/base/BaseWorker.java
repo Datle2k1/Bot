@@ -10,7 +10,7 @@ public abstract class BaseWorker implements Runnable {
      * Area : Variable
      ********************************************************************** */
     public String name;
-    //Chuoi luu tru thu muc lam viec hien tai
+    //list luu tru thu muc lam viec hien tai
     protected String currentDir;
     protected boolean isRunning;
     //Doi tuong quan ly luong cong viec
@@ -32,7 +32,7 @@ public abstract class BaseWorker implements Runnable {
     /* **********************************************************************
      * Area : Function - Public
      ********************************************************************** */
-    //Tạo ThreadPool chứa các Thread mới khi các Thread ban đầu vẫn đang hoạt động
+    //Tao ThreadPool chua cac Thread dmoi khi cac Thread ban dau van dang hoat dong.
     public void initThreadPool(int number) {
         if (number <= 0) {
             number = 1;

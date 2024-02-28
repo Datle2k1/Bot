@@ -11,6 +11,8 @@ public class ConfigFileJson {
      ********************************************************************** */
     @JsonProperty("idChannel")
     private String idChannel;
+    @JsonProperty("token")
+    private String token;
     @JsonProperty("websitesLinks")
     private List<WebsiteLink> listWebLink;
     @JsonProperty("request")
@@ -19,6 +21,11 @@ public class ConfigFileJson {
     /* **********************************************************************
      * Area : Getter
      ********************************************************************** */
+
+    public String getToken() {
+        return token;
+    }
+
     public Request getRequest() {
         return request;
     }

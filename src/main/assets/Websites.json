@@ -1,5 +1,6 @@
 {
   "idChannel": "@Test_Bot_Java",
+  "token" : "6640509759:AAHj0Rmrq6lhczZNQiXfOypvsaWiqRfBVfA",
   "request": {
     "timeout": 20,
     "schedule": {

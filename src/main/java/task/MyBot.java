@@ -4,12 +4,7 @@ import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
-public class MyBot extends TelegramLongPollingBot {
-    /* **********************************************************************
-     * Area : Variable - Const
-     ********************************************************************** */
-    public static String token = "6640509759:AAHj0Rmrq6lhczZNQiXfOypvsaWiqRfBVfA";
-
+public class MyBot extends TelegramLongPollingBot{
     /* **********************************************************************
      * Area : Function - @Override
      ********************************************************************** */

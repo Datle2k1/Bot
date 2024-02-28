@@ -34,9 +34,10 @@ public class Manager {
     private List<Response> list = new ArrayList<>();
     //Khai báo biến đếm số lần Request 1 lượt các link trong file Json
     private int count = 0;
-    //Khai báo đối tượng WebsiteLinks, idChannel ,period, timeout, bodyType từ File Json
+    //Khai báo đối tượng WebsiteLinks, idChannel ,period, timeout, token từ File Json
     private List<ConfigFileJson.WebsiteLink> listWebLinks;
     private String idChannel ;
+    private String token;
     private int period;
     private int timeout;
 
@@ -65,7 +66,6 @@ public class Manager {
                     //Kiem tra bodyType,method
                     if(!Utility.checkBodyType(w) || !Utility.checkMethod(w)) {
                         bot.sendMessage(Utility.outputError(w),idChannel);
-                        System.out.println(Utility.outputError(w));
                         continue;
                     }
                     //Tao reqeust
@@ -88,6 +88,7 @@ public class Manager {
         idChannel = configFileJson.getIdChannel();
         period = configFileJson.getRequest().getSchedule().getPeriod();
         timeout = configFileJson.getRequest().getTimeout();
+        token = configFileJson.getToken();
     }
 
     //Delay giữa các Request trong lượt Request
@@ -110,7 +111,7 @@ public class Manager {
     public void createBot() {
         try {
             TelegramBotsApi botsApi = new TelegramBotsApi(DefaultBotSession.class);
-            bot = new MyBot(MyBot.token);
+            bot = new MyBot(token);
             botsApi.registerBot(bot);
         } catch (TelegramApiException e) {
             e.printStackTrace();
@@ -127,9 +128,7 @@ public class Manager {
                 String messageCode = CheckCodeResponse.checkCodeResponse(response.code);
                 if (response.code/100 != 2) {
                     bot.sendMessage(Utility.getResponseString(response, w, messageCode),idChannel);
-                    System.out.println(Utility.getResponseString(response,w,messageCode));
-                } else {
-                    System.out.println("\n" + Utility.getResponseString(response, w, messageCode));
+                    bot.onClosing();
                 }
                 status = Complete;
             }
@@ -137,9 +136,7 @@ public class Manager {
             @Override
             public void fail(String msg) {
                 System.out.println(msg);
-                if (idChannel != null){
-                    bot.sendMessage(msg,idChannel);
-                }
+                bot.sendMessage(msg,idChannel);
                 status = Complete;
             }
         };
