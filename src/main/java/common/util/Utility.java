@@ -152,20 +152,4 @@ public class Utility {
         errorString.append("Link : " + w.getUrl() + "\n");
         return String.valueOf(errorString);
     }
-
-    /* *******************************************************************************
-     * Area : Function - Public - Bot running or not running
-     **********************************************************************************/
-    //Kiem tra Bot da duoc khoi tao chua
-    public static boolean checkBotStatus(MyBot bot) {
-        System.out.print("Check Bot isRunning : ");
-        try{
-            bot.sendMessage("Kiem tra Bot is running","@Test_Bot_Java");
-            System.out.println("running");
-            return true;
-        } catch (NullPointerException e){
-            System.out.println("not Running");
-            return false;
-        }
-    }
 }

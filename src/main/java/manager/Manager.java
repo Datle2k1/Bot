@@ -47,16 +47,8 @@ public class Manager {
      * Area : Function  - Public
      ********************************************************************** */
 
-    //Chat cac Tasks
-    public void run() throws IOException {
-        //Kiem tra va lay thong tin tu file Json : configFileJson, listWebLinks, idChannel, period,timeout.
-        System.out.println("--- Get Information From File Json ---");
-        getInformationFromFileJson();
-        //Khoi tao Bot neu Bot chua duoc khoi tao.
-        if (!Utility.checkBotStatus(bot)){
-            System.out.println("--- Create Bot ---");
-            createBot();
-        }
+    //Task
+    public void run() {
         //Xep lich
         System.out.println("--- Scheduler ---");
         scheduler.scheduleAtFixedRate(() -> {
@@ -82,6 +74,19 @@ public class Manager {
         }, 0, period, TimeUnit.SECONDS);
     }
 
+    //Kiem tra va lay thong tin tu file Json, khoi tao bot neu chua khoi tao
+    public void init() throws IOException {
+        System.out.println("--- Get Information From File Json ---");
+        getInformationFromFileJson();
+        //Khoi tao Bot neu Bot chua duoc khoi tao.
+        if (bot == null){
+            System.out.println("--- Initialize Bot ---");
+            bot = new MyBot(token);
+        } else {
+            System.out.println("--- Bot has been initialized ---");
+        }
+    }
+
     //Get information from File Json
     public void getInformationFromFileJson() throws IOException {
         //Tạo đối tượng ConfigFileJSon
@@ -94,16 +99,16 @@ public class Manager {
         token = configFileJson.getToken();
     }
 
-    //Tao bot
-    public void createBot() {
-        try {
-            TelegramBotsApi botsApi = new TelegramBotsApi(DefaultBotSession.class);
-            bot = new MyBot(token);
-            botsApi.registerBot(bot);
-        } catch (TelegramApiException e) {
-            e.printStackTrace();
-        }
-    }
+      //Tao bot
+//    public void createBot() {
+//        try {
+//            TelegramBotsApi botsApi = new TelegramBotsApi(DefaultBotSession.class);
+//            bot = new MyBot(token);
+//            botsApi.registerBot(bot);
+//        } catch (TelegramApiException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     //Delay giữa các Request trong lượt Request
     public void waitUntilComplete(int time) {
