@@ -4,13 +4,14 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9e771420-aa80-4a07-9f8c-71d1aef6fd25" name="Changes" comment="commit: - Thêm comment ,">
+    <list default="true" id="9e771420-aa80-4a07-9f8c-71d1aef6fd25" name="Changes" comment="commit: - .idea, chỉ đẩy lên Channel khi có lỗi.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/assets/Websites.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/assets/Websites.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/common/base/BaseWorker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/common/base/BaseWorker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/common/model/ConfigFileJson.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/common/model/ConfigFileJson.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/common/util/Utility.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/common/util/Utility.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/manager/Manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/manager/Manager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/task/MyBot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/task/MyBot.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/task/SendRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/task/SendRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/task/api/request/RequestCore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/task/api/request/RequestCore.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Websites.json" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -307,7 +308,14 @@
       <option name="project" value="LOCAL" />
       <updated>1709059117568</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="commit: - Chỉnh sửa comment ,">
+      <created>1709087518474</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1709087518474</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -339,6 +347,7 @@
     <MESSAGE value="commit : + Bot lấy link, period, id Channel từ file Json, khởi tạo list lưu trữ các response trong class Manager, check code response đầy đủ hơn." />
     <MESSAGE value="commit : + Thêm &quot;header&quot; vào file Json, send Request Post có body, authen đơn giản , kiểm tra các giá trị dầu vào." />
     <MESSAGE value="commit: - Thêm comment, chỉnh sửa 1 số vị trí khác." />
-    <option name="LAST_COMMIT_MESSAGE" value="commit: - Thêm comment, chỉnh sửa 1 số vị trí khác." />
+    <MESSAGE value="commit: - Chỉnh sửa comment ," />
+    <option name="LAST_COMMIT_MESSAGE" value="commit: - Chỉnh sửa comment ," />
   </component>
 </project>
