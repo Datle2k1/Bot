@@ -23,18 +23,16 @@ public class RequestParameter {
     /* **********************************************************************
      * Area : Function - Public - Get
      ********************************************************************** */
-//    public void get(String url, RequestMethod method) {
-//        get(url,method,null,null);
-//    }
-//
-//    public void get(String url, RequestMethod method, Map<String, String> parameters) {
-//        get(url, method ,null, parameters);
-//    }
-//
-//    public void get(String url, Map<String, String> headers, RequestMethod method) {
-//        get(url, method ,headers, null);
-
-    public void get(String url, RequestMethod method,Map<String, String> parameters, Map<String, String> headers) {
+    public void get(String url, RequestMethod method) {
+        get(url, method, null, null);
+    }
+    public void get(String url, RequestMethod method, Map<String, String> parameters) {
+        get(url, method, null, parameters);
+    }
+    public void get(String url, Map<String,String> headers, RequestMethod method) {
+        get(url, method, headers, null);
+    }
+    public void get(String url, RequestMethod method, Map<String,String> parameters, Map<String, String> headers) {
         this.url = url;
         this.method = method;
         this.parameters = parameters;
@@ -44,13 +42,13 @@ public class RequestParameter {
     /* **********************************************************************
      * Area : Function - Public - Post
      ********************************************************************** */
-//    public void post(String url, RequestMethod method, RequestBody bodyType) {
-//        post(url, method, bodyType, null,null);
-//    }
-//
-//    public void post(String url, RequestMethod method,RequestBody bodyType,  Map<String, String> parameters) {
-//        post(url, method, bodyType, parameters,null);
-//    }
+    public void post(String url, RequestMethod method, RequestBody bodyType) {
+        post(url, method, bodyType, null,null);
+    }
+
+    public void post(String url, RequestMethod method,RequestBody bodyType,  Map<String, String> parameters) {
+        post(url, method, bodyType, parameters,null);
+    }
 
     public void post(String url, RequestMethod method, RequestBody bodyType, Map<String, String> parameters, Map<String, String> headers) {
         this.method = method;

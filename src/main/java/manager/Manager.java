@@ -6,6 +6,7 @@ import common.model.ConfigFileJson;
 import common.util.CheckCodeResponse;
 import common.util.RequestStatus;
 import common.util.Utility;
+import okhttp3.OkHttpClient;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
@@ -21,15 +22,16 @@ import java.util.concurrent.TimeUnit;
 
 import static common.util.RequestStatus.Complete;
 import static common.util.RequestStatus.notComplete;
+import static org.glassfish.grizzly.http.server.Constants.GET;
 
 public class Manager {
     /* **********************************************************************
      * Area : Variable
      ********************************************************************** */
     private static ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
-    public static RequestStatus status;
+    public static RequestStatus status = Complete;
     //Tao doi tuong bot
-    private MyBot bot;
+    public MyBot bot;
     //Khai báo list lưu trữ response
     private List<Response> list = new ArrayList<>();
     //Khai báo biến đếm số lần Request 1 lượt các link trong file Json
@@ -37,7 +39,7 @@ public class Manager {
     //Khai báo đối tượng WebsiteLinks, idChannel ,period, timeout, token từ File Json
     private List<ConfigFileJson.WebsiteLink> listWebLinks;
     private String idChannel ;
-    private String token;
+    private static String token;
     private int period;
     private int timeout;
 
@@ -47,13 +49,14 @@ public class Manager {
 
     //Chat cac Tasks
     public void run() throws IOException {
-        //Chay bot
-        System.out.println("--- Create Bot ---");
-        createBot();
-        status = Complete;
         //Kiem tra va lay thong tin tu file Json : configFileJson, listWebLinks, idChannel, period,timeout.
         System.out.println("--- Get Information From File Json ---");
         getInformationFromFileJson();
+        //Khoi tao Bot neu Bot chua duoc khoi tao.
+        if (!Utility.checkBotStatus(bot)){
+            System.out.println("--- Create Bot ---");
+            createBot();
+        }
         //Xep lich
         System.out.println("--- Scheduler ---");
         scheduler.scheduleAtFixedRate(() -> {
@@ -91,6 +94,17 @@ public class Manager {
         token = configFileJson.getToken();
     }
 
+    //Tao bot
+    public void createBot() {
+        try {
+            TelegramBotsApi botsApi = new TelegramBotsApi(DefaultBotSession.class);
+            bot = new MyBot(token);
+            botsApi.registerBot(bot);
+        } catch (TelegramApiException e) {
+            e.printStackTrace();
+        }
+    }
+
     //Delay giữa các Request trong lượt Request
     public void waitUntilComplete(int time) {
         while (true) {
@@ -104,17 +118,6 @@ public class Manager {
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-        }
-    }
-
-    //Tao Bot
-    public void createBot() {
-        try {
-            TelegramBotsApi botsApi = new TelegramBotsApi(DefaultBotSession.class);
-            bot = new MyBot(token);
-            botsApi.registerBot(bot);
-        } catch (TelegramApiException e) {
-            e.printStackTrace();
         }
     }
 

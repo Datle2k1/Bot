@@ -51,22 +51,22 @@ public class SendRequest extends BaseWorker {
             //Nhap cac tham so cua doi tuong requestParemeter : bodyType, url, parameters.
             switch (method) {
                 case GET:
-                    requestParameter.get(url, GET, parameters, headers);
+                    requestParameter.get(url, method, parameters);
                     break;
                 case PUT:
-                    requestParameter.post(url, PUT, bodyType, parameters, headers);
+                    requestParameter.post(url, method, bodyType);
                     break;
                 case HEAD:
-                    requestParameter.get(url, HEAD, parameters, headers);
+                    requestParameter.get(url, method);
                     break;
                 case POST:
-                    requestParameter.post(url, POST, bodyType, parameters, headers);
+                    requestParameter.post(url, method, bodyType, parameters, headers);
                     break;
                 case PATCH:
-                    requestParameter.post(url, PATCH, bodyType, parameters, headers);
+                    requestParameter.post(url, method, bodyType, parameters);
                     break;
                 case DELETE:
-                    requestParameter.get(url, DELETE, parameters, headers);
+                    requestParameter.get(url, method, parameters, headers);
                     break;
             }
             requestCore.request(requestParameter, new RequestCallback() {

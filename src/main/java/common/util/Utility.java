@@ -3,6 +3,7 @@ package common.util;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import common.model.ConfigFileJson;
 import common.model.Response;
+import task.MyBot;
 import task.api.request.RequestMethod;
 
 import java.io.File;
@@ -150,5 +151,21 @@ public class Utility {
         errorString.append("BodyType : " + w.getBodyType() + "\n");
         errorString.append("Link : " + w.getUrl() + "\n");
         return String.valueOf(errorString);
+    }
+
+    /* *******************************************************************************
+     * Area : Function - Public - Bot running or not running
+     **********************************************************************************/
+    //Kiem tra Bot da duoc khoi tao chua
+    public static boolean checkBotStatus(MyBot bot) {
+        System.out.print("Check Bot isRunning : ");
+        try{
+            bot.sendMessage("Kiem tra Bot is running","@Test_Bot_Java");
+            System.out.println("running");
+            return true;
+        } catch (NullPointerException e){
+            System.out.println("not Running");
+            return false;
+        }
     }
 }

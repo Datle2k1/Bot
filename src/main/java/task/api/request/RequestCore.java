@@ -88,9 +88,6 @@ public class RequestCore {
                 callback.prepare();
                 Request request = builder.build();
                 Response response = client.newCall(request).execute();
-                if (requestParameter.headers != null){
-//                    System.out.println(response.body().string());
-                }
                 common.model.Response resp = new common.model.Response(requestParameter.url, response.code(), requestParameter.method.toString(), response.message());
                 callback.success(resp);
             }
