@@ -23,7 +23,7 @@ public class Utility {
     public static ConfigFileJson readFromJsonFile() throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
         try {
-            File file = new File("src/main/assets/Websites.json");
+            File file = new File("./assets/Websites.json");
             return objectMapper.readValue(file, ConfigFileJson.class);
         } catch (NullPointerException e) {
             throw new NullPointerException("--- Exceoption : \nFile dows not exits : " + e);
